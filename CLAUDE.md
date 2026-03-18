@@ -101,11 +101,18 @@ src/
 
 ## Deployment (DO App Platform)
 
+- **DO Account**: Norman Bystrican (separate from foxi.food team)
+- **DO API Token**: see `.claude/secrets.md` (not in git)
+- **App ID**: `9d9a5415-ee60-4d2e-bd92-19527851a29e`
+- **Ingress URL**: https://foxi-taxi-hyi4y.ondigitalocean.app
+- **Custom domain**: foxi.taxi (CNAME to ingress in Cloudflare)
 - **Build command**: `npm run build`
 - **Run command**: `node server.mjs` (via Procfile)
 - **HTTP port**: 8080
 - **Output**: Static files served from `./dist`
 - **Cache**: 1 year for assets, 10 min for HTML
+- **Auto-deploy**: ON (push to main → auto build+deploy)
+- **doctl usage**: `DIGITALOCEAN_ACCESS_TOKEN=dop_v1_... doctl apps list`
 
 ## SEO
 
