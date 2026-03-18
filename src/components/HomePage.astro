@@ -2,6 +2,7 @@
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
 import { DEFAULT_REGION, REGIONS } from '../data/regions';
+import { getCitiesForLang } from '../data/cities';
 
 interface Props {
   lang: Lang;
@@ -10,8 +11,9 @@ interface Props {
 const { lang } = Astro.props;
 const i = (key: string) => t(lang, key);
 const region = DEFAULT_REGION;
+const cities = getCitiesForLang(lang);
 
-// Build regions JSON for client-side script
+// Build regions JSON for client-side geo detection
 const regionsJson = JSON.stringify(
   Object.fromEntries(
     Object.entries(REGIONS).map(([code, r]) => [
@@ -49,8 +51,8 @@ const regionsJson = JSON.stringify(
 <section class="hero">
   <img src="/images/foxi-mascot.png" alt="" class="hero-mascot" aria-hidden="true" />
   <div class="hero-badge">
-    <span id="hero-flag">{region.flag}</span>
-    <span id="hero-region">{region.country}</span>
+    <span id="hero-flag">&#127757;</span>
+    <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'de' ? 'Standort wird erkannt...' : 'Detecting location...'}</span>
   </div>
   <h1>
     {i('hero.title')}<br/>
@@ -140,25 +142,25 @@ const regionsJson = JSON.stringify(
       </div>
     </div>
 
-    <!-- Region dropdown -->
+    <!-- City/Region dropdown -->
     <div class="footer-dropdown" id="dd-region">
       <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
         <div>
-          <div class="toggle-label">{lang === 'sk' ? 'Región' : lang === 'cs' ? 'Region' : lang === 'hu' ? 'Régió' : lang === 'pl' ? 'Region' : lang === 'de' ? 'Region' : 'Region'}</div>
-          <div class="toggle-value" id="dd-region-value">International</div>
+          <div class="toggle-label">{lang === 'sk' ? 'Mesto' : lang === 'cs' ? 'Město' : lang === 'hu' ? 'Város' : lang === 'pl' ? 'Miasto' : lang === 'de' ? 'Stadt' : 'City'}</div>
+          <div class="toggle-value" id="dd-region-value">{lang === 'sk' ? 'Vyberte mesto' : lang === 'cs' ? 'Vyberte město' : lang === 'hu' ? 'Válasszon várost' : lang === 'pl' ? 'Wybierz miasto' : lang === 'de' ? 'Stadt wählen' : 'Select city'}</div>
         </div>
         <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
       </button>
       <div class="footer-dropdown-panel">
-        {Object.entries(REGIONS).map(([code, r]) => (
-          <span class="footer-region-item" data-country={code}>
-            <span>{r.flag} {r.country}</span>
-            {r.operator && r.operator !== 'Coming soon' ? (
-              <span class="dd-phone">{r.phoneDisplay}</span>
+        {cities.map(c => (
+          <a href={`/${lang}/${c.slug}/`}>
+            <span>{c.name}</span>
+            {c.phone ? (
+              <span class="dd-phone">{c.phoneDisplay}</span>
             ) : (
               <span class="dd-soon">Coming soon</span>
             )}
-          </span>
+          </a>
         ))}
       </div>
     </div>
