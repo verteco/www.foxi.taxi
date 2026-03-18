@@ -206,6 +206,26 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 400;
 }
 
+.phone-secondary {
+  margin-top: 8px;
+}
+
+.phone-secondary a {
+  color: var(--gray-300);
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.phone-secondary a:hover { color: var(--accent); }
+
+.operator-label {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-top: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 /* ---- FEATURES ---- */
 .features {
   padding: 100px 24px;

@@ -1,143 +1,36 @@
 ---
+/**
+ * Root page — detects browser language and redirects to the correct locale.
+ * Static build generates HTML with client-side JS redirect.
+ */
 import Layout from '../layouts/Layout.astro';
-import { t, defaultLang } from '../i18n/translations';
-import { DEFAULT_REGION } from '../data/regions';
-
-const lang = defaultLang;
-const i = (key: string) => t(lang, key);
-
-// Default region for static build — client-side JS detects actual location
-const region = DEFAULT_REGION;
+import { supportedLangs, defaultLang } from '../i18n/translations';
 ---
 
-<Layout
-  title={i('meta.title')}
-  description={i('meta.description')}
-  lang={lang}
-  phone={region.phone}
->
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="/" class="logo-link">
-        <img src="/images/logo-small.png" alt="FOXI" class="logo-img" />
-        <span class="logo-text">FOXI<span class="taxi">.TAXI</span></span>
-      </a>
-      <a href={`tel:${region.phone}`} class="nav-phone">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span id="nav-phone-number">{region.phoneDisplay}</span>
-      </a>
-    </div>
-  </nav>
+<Layout title="FOXI TAXI" description="Fast, reliable taxi service." lang="en">
+  <script define:vars={{ supportedLangs, defaultLang }}>
+    // Detect browser language and redirect
+    const browserLangs = navigator.languages || [navigator.language];
+    let target = defaultLang;
 
-  <!-- Hero -->
-  <section class="hero">
-    <img src="/images/foxi-mascot.png" alt="" class="hero-mascot" aria-hidden="true" />
-    <div class="hero-badge">
-      <span>{region.flag}</span>
-      <span id="hero-region">{region.country}</span>
-    </div>
-    <h1>
-      {i('hero.title')}<br/>
-      <span class="accent">{i('hero.titleAccent')}</span>
-    </h1>
-    <p>{i('hero.subtitle')}</p>
-    <div class="hero-buttons">
-      <a href={`tel:${region.phone}`} class="btn btn-primary" id="cta-call">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        {i('hero.callNow')}
-      </a>
-    </div>
-    <div class="phone-display" id="phone-display">{region.phoneDisplay}</div>
-    <div class="region-label" id="region-label">
-      {region.city ? `${region.city}, ${region.country}` : region.country}
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features">
-    <div class="container">
-      <h2>{i('features.title')}</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">&#x23F1;&#xFE0F;</div>
-          <h3>{i('features.fast.title')}</h3>
-          <p>{i('features.fast.desc')}</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#x1F6E1;&#xFE0F;</div>
-          <h3>{i('features.safe.title')}</h3>
-          <p>{i('features.safe.desc')}</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#x1F4B0;</div>
-          <h3>{i('features.price.title')}</h3>
-          <p>{i('features.price.desc')}</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#x1F319;</div>
-          <h3>{i('features.available.title')}</h3>
-          <p>{i('features.available.desc')}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2>{i('cta.title')}</h2>
-    <p>{i('cta.subtitle')}</p>
-    <a href={`tel:${region.phone}`} class="cta-phone" id="cta-phone">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>{i('cta.call')} <span id="cta-phone-number">{region.phoneDisplay}</span></span>
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        {i('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
-      </div>
-      <div class="footer-tagline">
-        {i('footer.tagline')}
-      </div>
-    </div>
-  </footer>
-
-  <!-- Client-side geo fallback (if CF header not available, e.g. dev) -->
-  <script>
-    const REGIONS: Record<string, { phone: string; display: string; country: string; city?: string; flag: string }> = {
-      SK: { phone: '+421948355017', display: '+421 948 355 017', country: 'Slovakia', city: 'Detva', flag: '\u{1F1F8}\u{1F1F0}' },
-      CZ: { phone: '+421948355017', display: '+421 948 355 017', country: 'Czech Republic', flag: '\u{1F1E8}\u{1F1FF}' },
-      HU: { phone: '+421948355017', display: '+421 948 355 017', country: 'Hungary', flag: '\u{1F1ED}\u{1F1FA}' },
-      AT: { phone: '+421948355017', display: '+421 948 355 017', country: 'Austria', flag: '\u{1F1E6}\u{1F1F9}' },
-      DE: { phone: '+421948355017', display: '+421 948 355 017', country: 'Germany', flag: '\u{1F1E9}\u{1F1EA}' },
-    };
-
-    async function detectAndUpdate() {
-      const badge = document.getElementById('hero-region');
-      if (badge && badge.textContent !== 'International') return;
-
-      try {
-        const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
-        const data = await res.json();
-        const cc = data?.country_code?.toUpperCase();
-        const region = cc && REGIONS[cc] ? REGIONS[cc] : null;
-        if (!region) return;
-
-        document.querySelectorAll('#nav-phone-number, #phone-display, #cta-phone-number').forEach(el => {
-          el.textContent = region.display;
-        });
-        document.querySelectorAll('#cta-call, #cta-phone, .nav-phone').forEach(el => {
-          (el as HTMLAnchorElement).href = `tel:${region.phone}`;
-        });
-        if (badge) badge.textContent = region.country;
-        const label = document.getElementById('region-label');
-        if (label) label.textContent = region.city ? `${region.city}, ${region.country}` : region.country;
-      } catch { /* Silent fail */ }
+    for (const bl of browserLangs) {
+      const short = bl.split('-')[0].toLowerCase();
+      if (supportedLangs.includes(short)) {
+        target = short;
+        break;
+      }
     }
 
-    detectAndUpdate();
+    // Redirect to language-specific page
+    const path = target === defaultLang ? '/en/' : `/${target}/`;
+    if (window.location.pathname === '/') {
+      window.location.replace(path);
+    }
   </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+  </noscript>
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+    <div class="hero-badge" style="font-size:16px;">Redirecting...</div>
+  </div>
 </Layout>

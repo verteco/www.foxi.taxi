@@ -171,6 +171,92 @@ export const translations = {
       copyright: '\u00A9 {year} FOXI TAXI. Alle Rechte vorbehalten.',
     },
   },
+  hu: {
+    meta: {
+      title: 'FOXI TAXI — Az Ön utazása, egy hívásra',
+      description: 'Gyors, megbízható taxiszolgáltatás. Hívjon most vagy foglaljon online. 24/7 elérhető.',
+    },
+    hero: {
+      title: 'Az Ön utazása,',
+      titleAccent: 'egy hívásra',
+      subtitle: 'Gyorsan, megbízhatóan, mindig pontosan. A FOXI TAXI elviszi, ahová kell.',
+      callNow: 'Hívás most',
+      bookOnline: 'Online foglalás',
+    },
+    features: {
+      title: 'Miért a FOXI TAXI?',
+      fast: {
+        title: 'Gyors felvétel',
+        desc: 'Átlagos érkezési idő 5 perc alatt a belvárosban.',
+      },
+      safe: {
+        title: 'Biztonságos és megbízható',
+        desc: 'Profi sofőrök, biztosított járművek, nyomon követett utak.',
+      },
+      price: {
+        title: 'Tisztességes árak',
+        desc: 'Nincs felár. Amit lát, azt fizeti.',
+      },
+      available: {
+        title: '24/7 elérhető',
+        desc: 'Éjjel-nappal, hétköznap és hétvégén — mi vezetünk.',
+      },
+    },
+    cta: {
+      title: 'Szüksége van fuvarra?',
+      subtitle: 'Kattintson a gombra a helyi FOXI TAXI diszpécser hívásához.',
+      call: 'Hívás',
+    },
+    footer: {
+      tagline: 'FOXI TAXI — Technológia-alapú taxi diszpécser.',
+      privacy: 'Adatvédelem',
+      terms: 'Feltételek',
+      copyright: '\u00A9 {year} FOXI TAXI. Minden jog fenntartva.',
+    },
+  },
+  pl: {
+    meta: {
+      title: 'FOXI TAXI — Twój przejazd, jeden telefon',
+      description: 'Szybka, niezawodna taksówka. Zadzwoń teraz lub zarezerwuj online. Dostępne 24/7.',
+    },
+    hero: {
+      title: 'Twój przejazd,',
+      titleAccent: 'jeden telefon',
+      subtitle: 'Szybko, niezawodnie, zawsze na czas. FOXI TAXI zabierze Cię, dokąd chcesz.',
+      callNow: 'Zadzwoń teraz',
+      bookOnline: 'Zarezerwuj online',
+    },
+    features: {
+      title: 'Dlaczego FOXI TAXI?',
+      fast: {
+        title: 'Szybki odbiór',
+        desc: 'Średni czas przyjazdu poniżej 5 minut w centrum miasta.',
+      },
+      safe: {
+        title: 'Bezpiecznie i niezawodnie',
+        desc: 'Profesjonalni kierowcy, ubezpieczone pojazdy, śledzone przejazdy.',
+      },
+      price: {
+        title: 'Uczciwe ceny',
+        desc: 'Brak dopłat. Co widzisz, to płacisz.',
+      },
+      available: {
+        title: 'Dostępne 24/7',
+        desc: 'W dzień i w nocy, w dni robocze i weekendy — jeździmy.',
+      },
+    },
+    cta: {
+      title: 'Potrzebujesz przejazdu?',
+      subtitle: 'Kliknij przycisk, aby zadzwonić do lokalnego dyspozytora FOXI TAXI.',
+      call: 'Zadzwoń',
+    },
+    footer: {
+      tagline: 'FOXI TAXI — Technologicznie napędzana dyspozytornia taxi.',
+      privacy: 'Prywatność',
+      terms: 'Regulamin',
+      copyright: '\u00A9 {year} FOXI TAXI. Wszelkie prawa zastrzeżone.',
+    },
+  },
 } as const;
 
 export type Lang = keyof typeof translations;

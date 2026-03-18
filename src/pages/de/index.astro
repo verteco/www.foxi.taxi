@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePage from '../../components/HomePage.astro';
+import { t } from '../../i18n/translations';
+import type { Lang } from '../../i18n/translations';
+
+const lang: Lang = 'de';
+const i = (key: string) => t(lang, key);
+---
+
+<Layout
+  title={i('meta.title')}
+  description={i('meta.description')}
+  lang={lang}
+>
+  <HomePage lang={lang} />
+</Layout>
