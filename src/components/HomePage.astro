@@ -176,52 +176,74 @@ const regionsJson = JSON.stringify(
   });
 </script>
 
-<!-- Client-side geolocation — updates phone numbers based on visitor country -->
-<script define:vars={{ regionsJson }}>
+<!-- Client-side geolocation — 2s timeout, then fallback to language -->
+<script define:vars={{ regionsJson, lang }}>
   const REGIONS = JSON.parse(regionsJson);
 
-  async function detectGeo() {
-    // Skip if already geo-detected via CF
+  // Language → country fallback mapping
+  const LANG_FALLBACK: Record<string, string> = {
+    sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', de: 'AT', en: 'SK',
+  };
+
+  let resolved = false;
+
+  function applyRegion(region: any) {
+    if (resolved) return;
+    resolved = true;
+
     const badge = document.getElementById('hero-region');
-    if (badge && badge.textContent !== 'International') return;
+    const flag = document.getElementById('hero-flag');
+    const label = document.getElementById('region-label');
+    const op = document.getElementById('operator-label');
+    const sec = document.getElementById('phone-secondary');
 
-    try {
-      const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
-      const data = await res.json();
-      const cc = data?.country_code?.toUpperCase();
-      const region = cc && REGIONS[cc] ? REGIONS[cc] : null;
-      if (!region) return;
+    // Phone numbers
+    document.querySelectorAll('#nav-phone-number, #phone-display, #cta-phone-number').forEach(el => {
+      el.textContent = region.display;
+    });
+    document.querySelectorAll('#cta-call, #cta-phone, #nav-phone-link').forEach(el => {
+      (el as HTMLAnchorElement).href = `tel:${region.phone}`;
+    });
 
-      // Update phone numbers
-      document.querySelectorAll('#nav-phone-number, #phone-display, #cta-phone-number').forEach(el => {
-        el.textContent = region.display;
-      });
+    // Region badge
+    if (badge) badge.textContent = region.country;
+    if (flag) flag.textContent = region.flag;
+    if (label) label.textContent = region.city ? `${region.city}, ${region.country}` : region.country;
 
-      // Update tel: links
-      document.querySelectorAll('#cta-call, #cta-phone, #nav-phone-link').forEach(el => {
-        el.href = `tel:${region.phone}`;
-      });
+    // Operator
+    if (op && region.operator && region.operator !== 'Coming soon') {
+      op.textContent = `Operated by ${region.operator}`;
+    }
 
-      // Update region info
-      if (badge) badge.textContent = region.country;
-      const flag = document.getElementById('hero-flag');
-      if (flag) flag.textContent = region.flag;
-      const label = document.getElementById('region-label');
-      if (label) label.textContent = region.city ? `${region.city}, ${region.country}` : region.country;
-
-      // Operator name
-      const op = document.getElementById('operator-label');
-      if (op && region.operator && region.operator !== 'Coming soon') {
-        op.textContent = `Operated by ${region.operator}`;
-      }
-
-      // Secondary phone
-      const sec = document.getElementById('phone-secondary');
-      if (sec && region.phoneSecondaryDisplay) {
-        sec.innerHTML = `<a href="tel:${region.phoneSecondary}" style="color: var(--gray-300); font-size: 16px;">${region.phoneSecondaryDisplay}</a>`;
-      }
-    } catch { /* Silent fail — keep default */ }
+    // Secondary phone
+    if (sec && region.phoneSecondaryDisplay) {
+      sec.innerHTML = `<a href="tel:${region.phoneSecondary}" style="color:var(--gray-300);font-size:16px">${region.phoneSecondaryDisplay}</a>`;
+    }
   }
 
-  detectGeo();
+  function applyFallback() {
+    const cc = LANG_FALLBACK[lang] || 'SK';
+    const region = REGIONS[cc];
+    if (region) applyRegion(region);
+  }
+
+  // Race: geo detection (2s max) vs fallback
+  const fallbackTimer = setTimeout(applyFallback, 2000);
+
+  fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(2000) })
+    .then(r => r.json())
+    .then(data => {
+      clearTimeout(fallbackTimer);
+      const cc = data?.country_code?.toUpperCase();
+      const region = cc && REGIONS[cc] ? REGIONS[cc] : null;
+      if (region) {
+        applyRegion(region);
+      } else {
+        applyFallback();
+      }
+    })
+    .catch(() => {
+      clearTimeout(fallbackTimer);
+      applyFallback();
+    });
 </script>
