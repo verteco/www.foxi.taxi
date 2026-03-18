@@ -118,6 +118,37 @@ const regionsJson = JSON.stringify(
       {i('footer.tagline')}
     </div>
   </div>
+
+  <!-- Language switcher -->
+  <div class="footer-section">
+    <div class="footer-section-title">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'de' ? 'Sprache' : 'Language'}</div>
+    <div class="footer-links-row">
+      <a href="/en/" class:list={[{ active: lang === 'en' }]}>English</a>
+      <a href="/sk/" class:list={[{ active: lang === 'sk' }]}>Slovenčina</a>
+      <a href="/cs/" class:list={[{ active: lang === 'cs' }]}>Čeština</a>
+      <a href="/de/" class:list={[{ active: lang === 'de' }]}>Deutsch</a>
+      <a href="/hu/" class:list={[{ active: lang === 'hu' }]}>Magyar</a>
+      <a href="/pl/" class:list={[{ active: lang === 'pl' }]}>Polski</a>
+    </div>
+  </div>
+
+  <!-- Regions -->
+  <div class="footer-section">
+    <div class="footer-section-title">{lang === 'sk' ? 'Regióny' : lang === 'cs' ? 'Regiony' : lang === 'hu' ? 'Régiók' : lang === 'pl' ? 'Regiony' : lang === 'de' ? 'Regionen' : 'Regions'}</div>
+    <div class="footer-links-row">
+      {Object.entries(REGIONS).map(([code, r]) => (
+        <span class="footer-region">
+          <span>{r.flag}</span>
+          <span>{r.country}</span>
+          {r.operator && r.operator !== 'Coming soon' ? (
+            <a href={`tel:${r.phone}`} class="footer-region-phone">{r.phoneDisplay}</a>
+          ) : (
+            <span class="footer-coming-soon">Coming soon</span>
+          )}
+        </span>
+      ))}
+    </div>
+  </div>
 </footer>
 
 <!-- Client-side geolocation — updates phone numbers based on visitor country -->
