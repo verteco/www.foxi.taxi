@@ -119,37 +119,60 @@ const regionsJson = JSON.stringify(
     </div>
   </div>
 
-  <!-- Language switcher -->
-  <div class="footer-section">
-    <div class="footer-section-title">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'de' ? 'Sprache' : 'Language'}</div>
-    <div class="footer-links-row">
-      <a href="/en/" class:list={[{ active: lang === 'en' }]}>English</a>
-      <a href="/sk/" class:list={[{ active: lang === 'sk' }]}>Slovenčina</a>
-      <a href="/cs/" class:list={[{ active: lang === 'cs' }]}>Čeština</a>
-      <a href="/de/" class:list={[{ active: lang === 'de' }]}>Deutsch</a>
-      <a href="/hu/" class:list={[{ active: lang === 'hu' }]}>Magyar</a>
-      <a href="/pl/" class:list={[{ active: lang === 'pl' }]}>Polski</a>
+  <!-- Dropdowns: Language + Region -->
+  <div class="footer-selector">
+    <!-- Language dropdown -->
+    <div class="footer-dropdown" id="dd-lang">
+      <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
+        <div>
+          <div class="toggle-label">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'de' ? 'Sprache' : 'Language'}</div>
+          <div class="toggle-value">{lang === 'en' ? 'English' : lang === 'sk' ? 'Slovenčina' : lang === 'cs' ? 'Čeština' : lang === 'de' ? 'Deutsch' : lang === 'hu' ? 'Magyar' : 'Polski'}</div>
+        </div>
+        <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+      <div class="footer-dropdown-panel">
+        <a href="/en/" class:list={[{ active: lang === 'en' }]}>English</a>
+        <a href="/sk/" class:list={[{ active: lang === 'sk' }]}>Slovenčina</a>
+        <a href="/cs/" class:list={[{ active: lang === 'cs' }]}>Čeština</a>
+        <a href="/de/" class:list={[{ active: lang === 'de' }]}>Deutsch</a>
+        <a href="/hu/" class:list={[{ active: lang === 'hu' }]}>Magyar</a>
+        <a href="/pl/" class:list={[{ active: lang === 'pl' }]}>Polski</a>
+      </div>
     </div>
-  </div>
 
-  <!-- Regions -->
-  <div class="footer-section">
-    <div class="footer-section-title">{lang === 'sk' ? 'Regióny' : lang === 'cs' ? 'Regiony' : lang === 'hu' ? 'Régiók' : lang === 'pl' ? 'Regiony' : lang === 'de' ? 'Regionen' : 'Regions'}</div>
-    <div class="footer-links-row">
-      {Object.entries(REGIONS).map(([code, r]) => (
-        <span class="footer-region">
-          <span>{r.flag}</span>
-          <span>{r.country}</span>
-          {r.operator && r.operator !== 'Coming soon' ? (
-            <a href={`tel:${r.phone}`} class="footer-region-phone">{r.phoneDisplay}</a>
-          ) : (
-            <span class="footer-coming-soon">Coming soon</span>
-          )}
-        </span>
-      ))}
+    <!-- Region dropdown -->
+    <div class="footer-dropdown" id="dd-region">
+      <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
+        <div>
+          <div class="toggle-label">{lang === 'sk' ? 'Región' : lang === 'cs' ? 'Region' : lang === 'hu' ? 'Régió' : lang === 'pl' ? 'Region' : lang === 'de' ? 'Region' : 'Region'}</div>
+          <div class="toggle-value" id="dd-region-value">International</div>
+        </div>
+        <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+      <div class="footer-dropdown-panel">
+        {Object.entries(REGIONS).map(([code, r]) => (
+          <span class="footer-region-item" data-country={code}>
+            <span>{r.flag} {r.country}</span>
+            {r.operator && r.operator !== 'Coming soon' ? (
+              <span class="dd-phone">{r.phoneDisplay}</span>
+            ) : (
+              <span class="dd-soon">Coming soon</span>
+            )}
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 </footer>
+
+<!-- Close dropdowns when clicking outside -->
+<script>
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.footer-dropdown.open').forEach(dd => {
+      if (!dd.contains(e.target as Node)) dd.classList.remove('open');
+    });
+  });
+</script>
 
 <!-- Client-side geolocation — updates phone numbers based on visitor country -->
 <script define:vars={{ regionsJson }}>

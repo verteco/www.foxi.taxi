@@ -1,0 +1,160 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { t, supportedLangs } from '../../../i18n/translations';
+import type { Lang } from '../../../i18n/translations';
+import { CITIES, findCity, type City } from '../../../data/cities';
+import { getRegion, REGIONS } from '../../../data/regions';
+
+export function getStaticPaths() {
+  const paths: { params: { lang: string; city: string } }[] = [];
+  for (const lang of Object.keys(CITIES)) {
+    for (const city of CITIES[lang]) {
+      paths.push({ params: { lang, city: city.slug } });
+    }
+  }
+  return paths;
+}
+
+const { lang, city: citySlug } = Astro.params;
+const typedLang = (supportedLangs.includes(lang as Lang) ? lang : 'en') as Lang;
+const city = findCity(typedLang, citySlug!);
+if (!city) return Astro.redirect(`/${typedLang}/`);
+
+const i = (key: string) => t(typedLang, key);
+const region = REGIONS[city.countryCode] ?? getRegion(city.countryCode);
+const phone = city.phone ?? region.phone;
+const phoneDisplay = city.phoneDisplay ?? region.phoneDisplay;
+const phoneSecondary = city.phoneSecondary ?? region.phoneSecondary;
+const phoneSecondaryDisplay = city.phoneSecondaryDisplay ?? region.phoneSecondaryDisplay;
+const operator = city.operator ?? region.operator;
+const isActive = !!city.phone;
+
+const allCitiesInLang = CITIES[typedLang] ?? [];
+const metaTitle = `FOXI TAXI ${city.name} — ${i('meta.title').split('—')[1]?.trim() ?? ''}`;
+const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.`;
+---
+
+<Layout title={metaTitle} description={metaDesc} lang={typedLang} phone={phone}>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href={`/${typedLang}/`} class="logo-link">
+        <img src="/images/logo-small.png" alt="FOXI" class="logo-img" />
+        <span class="logo-text">FOXI<span class="taxi">.TAXI</span></span>
+      </a>
+      <a href={`tel:${phone}`} class="nav-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>{phoneDisplay}</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero — city-specific -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span>{region.flag}</span>
+      <span>{city.name}, {city.country}</span>
+    </div>
+    <h1>
+      FOXI TAXI<br/>
+      <span class="accent">{city.name}</span>
+    </h1>
+    <p>{i('hero.subtitle')}</p>
+    <div class="hero-buttons">
+      {isActive ? (
+        <a href={`tel:${phone}`} class="btn btn-primary">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {i('hero.callNow')}
+        </a>
+      ) : (
+        <span class="btn btn-outline" style="cursor:default;opacity:0.6;">Coming soon</span>
+      )}
+    </div>
+    {isActive && <div class="phone-display">{phoneDisplay}</div>}
+    {isActive && phoneSecondaryDisplay && (
+      <div class="phone-secondary">
+        <a href={`tel:${phoneSecondary}`}>{phoneSecondaryDisplay}</a>
+      </div>
+    )}
+    {operator && operator !== 'Coming soon' && (
+      <div class="operator-label">Operated by {operator}</div>
+    )}
+    {!isActive && (
+      <div class="region-label" style="margin-top:24px;">
+        FOXI TAXI {city.name} — Coming soon
+      </div>
+    )}
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>{i('features.title')}</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#x23F1;&#xFE0F;</div>
+          <h3>{i('features.fast.title')}</h3>
+          <p>{i('features.fast.desc')}</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F6E1;&#xFE0F;</div>
+          <h3>{i('features.safe.title')}</h3>
+          <p>{i('features.safe.desc')}</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F4B0;</div>
+          <h3>{i('features.price.title')}</h3>
+          <p>{i('features.price.desc')}</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#x1F319;</div>
+          <h3>{i('features.available.title')}</h3>
+          <p>{i('features.available.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other cities -->
+  <section class="cta">
+    <h2>{typedLang === 'sk' ? 'Mestá' : typedLang === 'cs' ? 'Města' : typedLang === 'hu' ? 'Városok' : typedLang === 'pl' ? 'Miasta' : typedLang === 'de' ? 'Städte' : 'Cities'}</h2>
+    <div class="cities-grid">
+      {allCitiesInLang.map(c => (
+        <a
+          href={`/${typedLang}/${c.slug}/`}
+          class:list={['city-card', { active: c.slug === citySlug }]}
+        >
+          <span class="city-name">{c.name}</span>
+          {c.phone ? (
+            <span class="city-phone">{c.phoneDisplay}</span>
+          ) : (
+            <span class="city-soon">Coming soon</span>
+          )}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        {i('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
+      </div>
+      <div class="footer-tagline">
+        {i('footer.tagline')}
+      </div>
+    </div>
+    <div class="footer-section">
+      <div class="footer-section-title">{typedLang === 'sk' ? 'Jazyk' : typedLang === 'cs' ? 'Jazyk' : typedLang === 'hu' ? 'Nyelv' : typedLang === 'pl' ? 'Język' : typedLang === 'de' ? 'Sprache' : 'Language'}</div>
+      <div class="footer-links-row">
+        <a href="/en/">English</a>
+        <a href="/sk/">Slovenčina</a>
+        <a href="/cs/">Čeština</a>
+        <a href="/de/">Deutsch</a>
+        <a href="/hu/">Magyar</a>
+        <a href="/pl/">Polski</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
