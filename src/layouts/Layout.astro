@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  phone?: string;
+}
+
+const { title, description, lang = 'en', phone = '+421 948 355 017' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="FOXI TAXI" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Schema.org TaxiService -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TaxiService",
+      "name": "FOXI TAXI",
+      "url": "https://foxi.taxi",
+      "telephone": phone,
+      "description": description,
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 48.63, "longitude": 21.72 },
+        "geoRadius": "100000"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "servicePhone": { "@type": "ContactPoint", "telephone": phone, "contactType": "reservations", "availableLanguage": ["Slovak", "Czech", "English", "German"] }
+      }
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
