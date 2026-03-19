@@ -60,8 +60,7 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: space-between;
 }
 
-.logo-link { display: flex; align-items: center; gap: 10px; }
-.logo-img { height: 36px; width: auto; }
+.logo-link { display: flex; align-items: center; }
 .logo-text { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
 .logo-text .taxi { color: var(--accent); }
 
@@ -368,11 +367,26 @@ img { max-width: 100%; height: auto; display: block; }
   padding-bottom: 20px;
   margin-bottom: 0;
 }
-.footer-logo {
-  height: 32px;
-  margin: 0 auto 8px;
-  opacity: 0.5;
+
+.footer-brand-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 6px;
 }
+.footer-brand-name .taxi { color: var(--accent); }
+
+.footer-powered-by {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--gray-500);
+  transition: color 0.2s;
+  letter-spacing: 0.02em;
+}
+.footer-powered-by:hover { color: var(--gray-300); }
+.footer-powered-by strong { color: var(--gray-400); font-weight: 700; }
 
 /* ---- FEATURES ---- */
 .features {

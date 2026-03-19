@@ -20,7 +20,6 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 <nav class="navbar">
   <div class="navbar-inner">
     <a href={`/${lang === 'en' ? '' : lang + '/'}`} class="logo-link">
-      <img src="/images/logo-small.png" alt="FOXI" class="logo-img" />
       <span class="logo-text">FOXI<span class="taxi">.TAXI</span></span>
     </a>
     <a href={`tel:${region.phone}`} class="nav-phone" id="nav-phone-link">
@@ -131,8 +130,11 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 <!-- Footer -->
 <footer>
   <div class="footer-brand">
-    <img src="/images/logo-footer.png" alt="FOXI" class="footer-logo" />
+    <span class="footer-brand-name">FOXI<span class="taxi">.TAXI</span></span>
     <div class="footer-tagline">{i('footer.tagline')}</div>
+    <a href="https://www.foxifood.com" target="_blank" rel="noopener" class="footer-powered-by">
+      {lang === 'sk' ? 'Služba platformy' : lang === 'cs' ? 'Služba platformy' : lang === 'hu' ? 'A platform szolgáltatása' : lang === 'pl' ? 'Usługa platformy' : lang === 'ro' ? 'Un serviciu al platformei' : 'A service by'} <strong>FOXI.FOOD</strong>
+    </a>
   </div>
   <div class="footer-inner">
     <div class="footer-left">
