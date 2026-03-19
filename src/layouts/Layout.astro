@@ -7,13 +7,14 @@ interface Props {
   lang?: string;
   phone?: string;
   cityName?: string;
+  countryName?: string;
   lat?: number;
   lng?: number;
   noindex?: boolean;
   faq?: { q: string; a: string }[];
 }
 
-const { title, description, lang = 'en', phone = '+421 948 355 017', cityName, lat, lng, noindex = false, faq } = Astro.props;
+const { title, description, lang = 'en', phone = '+421 948 355 017', cityName, countryName, lat, lng, noindex = false, faq } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -33,11 +34,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="FOXI TAXI" />
+    <meta property="og:image" content="https://www.foxi.taxi/images/og-image.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://www.foxi.taxi/images/og-image.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -58,11 +61,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }),
         ...(lat ? { "geo": { "@type": "GeoCoordinates", "latitude": lat, "longitude": lng } } : {})
       },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "priceRange": "$",
       "availableChannel": {
         "@type": "ServiceChannel",
-        "servicePhone": { "@type": "ContactPoint", "telephone": phone, "contactType": "reservations", "availableLanguage": ["Slovak", "Czech", "English", "German", "Hungarian", "Polish"] }
+        "servicePhone": { "@type": "ContactPoint", "telephone": phone, "contactType": "reservations", "availableLanguage": ["Slovak", "Czech", "English", "German", "Hungarian", "Polish", "Romanian"] }
       }
     })} />
+
+    {/* BreadcrumbList Schema — helps Google show breadcrumbs in SERP */}
+    {cityName && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "FOXI TAXI", "item": `https://www.foxi.taxi/${lang}/` },
+          ...(countryName ? [{ "@type": "ListItem", "position": 2, "name": countryName, "item": `https://www.foxi.taxi/${lang}/` }] : []),
+          { "@type": "ListItem", "position": countryName ? 3 : 2, "name": `Taxi ${cityName}` }
+        ]
+      })} />
+    )}
 
     {/* FAQ Schema.org — for Google featured snippets */}
     {faq && faq.length > 0 && (

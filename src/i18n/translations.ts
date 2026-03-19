@@ -40,6 +40,9 @@ export const translations = {
       title: 'Need a ride?',
       subtitle: 'Tap the button to call your local FOXI TAXI dispatcher.',
       call: 'Call',
+      comingSoon: 'Coming soon',
+      operatedBy: 'Operated by {operator}',
+      citiesTitle: 'Cities',
     },
     cityContent: {
       aboutTitle: 'Taxi service in {city}',
@@ -110,6 +113,9 @@ export const translations = {
       title: 'Potrebujete odvoz?',
       subtitle: 'Kliknite a zavolajte vášmu lokálnemu FOXI TAXI dispečerovi.',
       call: 'Zavolať',
+      comingSoon: 'Už čoskoro',
+      operatedBy: 'Prevádzkované {operator}',
+      citiesTitle: 'Mestá',
     },
     cityContent: {
       aboutTitle: 'Taxi služba v meste {city}',
@@ -180,6 +186,9 @@ export const translations = {
       title: 'Potřebujete odvoz?',
       subtitle: 'Klikněte a zavolejte vašemu lokálnímu FOXI TAXI dispečerovi.',
       call: 'Zavolat',
+      comingSoon: 'Již brzy',
+      operatedBy: 'Provozováno {operator}',
+      citiesTitle: 'Města',
     },
     cityContent: {
       aboutTitle: 'Taxi služba ve městě {city}',
@@ -250,6 +259,9 @@ export const translations = {
       title: 'Brauchen Sie eine Fahrt?',
       subtitle: 'Tippen Sie auf den Button, um Ihren lokalen FOXI TAXI Disponenten anzurufen.',
       call: 'Anrufen',
+      comingSoon: 'Demnächst',
+      operatedBy: 'Betrieben von {operator}',
+      citiesTitle: 'Städte',
     },
     cityContent: {
       aboutTitle: 'Taxiservice in {city}',
@@ -320,6 +332,9 @@ export const translations = {
       title: 'Szüksége van fuvarra?',
       subtitle: 'Kattintson a gombra a helyi FOXI TAXI diszpécser hívásához.',
       call: 'Hívás',
+      comingSoon: 'Hamarosan',
+      operatedBy: '{operator} üzemeltetésében',
+      citiesTitle: 'Városok',
     },
     cityContent: {
       aboutTitle: 'Taxi szolgáltatás {city} városában',
@@ -390,6 +405,9 @@ export const translations = {
       title: 'Potrzebujesz przejazdu?',
       subtitle: 'Kliknij przycisk, aby zadzwonić do lokalnego dyspozytora FOXI TAXI.',
       call: 'Zadzwoń',
+      comingSoon: 'Wkrótce',
+      operatedBy: 'Obsługiwane przez {operator}',
+      citiesTitle: 'Miasta',
     },
     cityContent: {
       aboutTitle: 'Taxi w mieście {city}',
@@ -460,6 +478,9 @@ export const translations = {
       title: 'Ai nevoie de o cursă?',
       subtitle: 'Apasă butonul pentru a suna dispeceratul local FOXI TAXI.',
       call: 'Sună',
+      comingSoon: 'În curând',
+      operatedBy: 'Operat de {operator}',
+      citiesTitle: 'Orașe',
     },
     cityContent: {
       aboutTitle: 'Serviciu taxi în {city}',

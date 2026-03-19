@@ -45,7 +45,7 @@ const faqItems = [
 ];
 ---
 
-<Layout title={metaTitle} description={metaDesc} lang={typedLang} phone={phone} cityName={city.name} lat={city.lat} lng={city.lng} noindex={noindex} faq={faqItems}>
+<Layout title={metaTitle} description={metaDesc} lang={typedLang} phone={phone} cityName={city.name} countryName={city.countryName} lat={city.lat} lng={city.lng} noindex={noindex} faq={faqItems}>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-inner">
@@ -78,7 +78,7 @@ const faqItems = [
           {i('hero.callNow')}
         </a>
       ) : (
-        <span class="btn btn-outline" style="cursor:default;opacity:0.6;">Coming soon</span>
+        <span class="btn btn-outline" style="cursor:default;opacity:0.6;">{i('cta.comingSoon')}</span>
       )}
     </div>
     {isActive && <div class="phone-display">{phoneDisplay}</div>}
@@ -87,12 +87,12 @@ const faqItems = [
         <a href={`tel:${phoneSecondary}`}>{phoneSecondaryDisplay}</a>
       </div>
     )}
-    {operator && operator !== 'Coming soon' && (
-      <div class="operator-label">Operated by {operator}</div>
+    {isActive && operator && operator !== 'Coming soon' && (
+      <div class="operator-label">{i('cta.operatedBy').replace('{operator}', operator)}</div>
     )}
     {!isActive && (
       <div class="region-label" style="margin-top:24px;">
-        Taxi {city.name} — {typedLang === 'sk' ? 'Už čoskoro' : typedLang === 'cs' ? 'Již brzy' : typedLang === 'hu' ? 'Hamarosan' : typedLang === 'pl' ? 'Wkrótce' : typedLang === 'de' ? 'Demnächst' : 'Coming soon'}
+        Taxi {city.name} — {i('cta.comingSoon')}
       </div>
     )}
   </section>
@@ -209,7 +209,7 @@ const faqItems = [
 
   <!-- Other cities -->
   <section class="cta fade-section" style="padding-top:0;">
-    <h2>{typedLang === 'sk' ? 'Mestá' : typedLang === 'cs' ? 'Města' : typedLang === 'hu' ? 'Városok' : typedLang === 'pl' ? 'Miasta' : typedLang === 'de' ? 'Städte' : 'Cities'}</h2>
+    <h2>{i('cta.citiesTitle')}</h2>
     <div class="cities-grid">
       {allCitiesInLang.map(c => (
         <a
@@ -217,10 +217,10 @@ const faqItems = [
           class:list={['city-card', { active: c.slug === citySlug }]}
         >
           <span class="city-name">{c.name}</span>
-          {c.phone ? (
+          {c.isActive ? (
             <span class="city-phone">{c.phoneDisplay}</span>
           ) : (
-            <span class="city-soon">Coming soon</span>
+            <span class="city-soon">{i('cta.comingSoon')}</span>
           )}
         </a>
       ))}
@@ -246,14 +246,14 @@ const faqItems = [
       </div>
     </div>
     <div class="footer-section">
-      <div class="footer-section-title">{typedLang === 'sk' ? 'Jazyk' : typedLang === 'cs' ? 'Jazyk' : typedLang === 'hu' ? 'Nyelv' : typedLang === 'pl' ? 'Język' : typedLang === 'de' ? 'Sprache' : 'Language'}</div>
+      <div class="footer-section-title">{typedLang === 'sk' ? 'Jazyk' : typedLang === 'cs' ? 'Jazyk' : typedLang === 'hu' ? 'Nyelv' : typedLang === 'pl' ? 'Język' : typedLang === 'ro' ? 'Limbă' : 'Language'}</div>
       <div class="footer-links-row">
         <a href="/en/">English</a>
         <a href="/sk/">Slovenčina</a>
         <a href="/cs/">Čeština</a>
-        <a href="/de/">Deutsch</a>
         <a href="/hu/">Magyar</a>
         <a href="/pl/">Polski</a>
+        <a href="/ro/">Română</a>
       </div>
     </div>
   </footer>
