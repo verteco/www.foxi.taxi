@@ -687,6 +687,110 @@ footer {
   font-style: italic;
 }
 
+/* ---- CITY ABOUT SECTION ---- */
+.city-about {
+  padding: 80px 24px;
+  background: var(--dark);
+}
+
+.city-about h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+.city-about h3 {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+
+.about-content p,
+.city-about > .container > p {
+  color: var(--gray-300);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-weight: 300;
+  max-width: 800px;
+}
+
+/* ---- FAQ SECTION ---- */
+.faq-section {
+  padding: 80px 24px;
+  background: var(--darker);
+}
+
+.faq-section h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 32px;
+  color: var(--white);
+  text-align: center;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq-item[open] {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(243,119,34,0.3);
+}
+
+.faq-item summary {
+  padding: 18px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item p {
+  padding: 0 24px 18px;
+  color: var(--gray-300);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
 /* Cities grid (for city pages) */
 .cities-grid {
   display: grid;

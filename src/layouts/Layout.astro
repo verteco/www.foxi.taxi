@@ -10,9 +10,10 @@ interface Props {
   lat?: number;
   lng?: number;
   noindex?: boolean;
+  faq?: { q: string; a: string }[];
 }
 
-const { title, description, lang = 'en', phone = '+421 948 355 017', cityName, lat, lng, noindex = false } = Astro.props;
+const { title, description, lang = 'en', phone = '+421 948 355 017', cityName, lat, lng, noindex = false, faq } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -62,6 +63,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "servicePhone": { "@type": "ContactPoint", "telephone": phone, "contactType": "reservations", "availableLanguage": ["Slovak", "Czech", "English", "German", "Hungarian", "Polish"] }
       }
     })} />
+
+    {/* FAQ Schema.org — for Google featured snippets */}
+    {faq && faq.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faq.map(item => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.a,
+          },
+        })),
+      })} />
+    )}
   </head>
   <body>
     <slot />
