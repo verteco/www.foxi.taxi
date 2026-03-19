@@ -1,0 +1,44 @@
+# FOXI TAXI
+
+> FOXI TAXI is a technology-powered taxi dispatch platform connecting local taxi operators with customers across Central and Eastern Europe.
+
+## What is FOXI TAXI?
+
+FOXI TAXI provides a unified taxi dispatch service. Customers call a local number, and the nearest available driver is dispatched to their location. The platform operates through local operators in each city.
+
+## Currently Active
+
+- **Trebisov area, Slovakia**: Trebisov, Kralovsky Chlmec, Secovce, Bysta
+  - Phone: 0950 706 000 / 0950 795 150
+  - Operator: RS Dolina
+
+## Coverage
+
+FOXI TAXI is expanding across:
+- **Slovakia** (79 cities across 8 regions)
+- **Czech Republic** (13 major cities)
+- **Hungary** (10 major cities)
+- **Poland** (10 major cities)
+- **Romania** (20 major cities)
+
+## How It Works
+
+1. **Call** — Dial the local FOXI TAXI number or tap the call button on the website
+2. **Dispatch** — The nearest available driver is assigned to your pickup
+3. **Ride** — Your driver arrives and takes you to your destination
+
+## Key Features
+
+- Fast pickup (under 5 minutes in city center)
+- Professional, insured drivers
+- Fair pricing with no surge charges
+- Available 24/7
+
+## Contact
+
+- Website: https://www.foxi.taxi
+- Phone (Slovakia): 0950 706 000
+
+## For detailed information
+
+See the full documentation: https://www.foxi.taxi/llms-full.txt

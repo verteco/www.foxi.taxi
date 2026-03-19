@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import HomePage from '../../components/HomePage.astro';
 import { t } from '../../i18n/translations';
 import type { Lang } from '../../i18n/translations';
+import { isLangIndexable } from '../../data/loader';
 
 const lang: Lang = 'pl';
 const i = (key: string) => t(lang, key);
@@ -12,6 +13,7 @@ const i = (key: string) => t(lang, key);
   title={i('meta.title')}
   description={i('meta.description')}
   lang={lang}
+  noindex={!isLangIndexable(lang)}
 >
   <HomePage lang={lang} />
 </Layout>

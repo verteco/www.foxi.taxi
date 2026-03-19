@@ -1,0 +1,32 @@
+{
+  "countryCode": "HU",
+  "lang": "hu",
+  "countryName": "Magyarország",
+  "flag": "\ud83c\udded\ud83c\uddfa",
+  "currency": "HUF",
+  "defaultPhone": "+36000000000",
+  "defaultPhoneDisplay": "+36 00 000 0000",
+  "operator": "Coming soon",
+  "indexable": false,
+  "regions": [
+    { "slug": "budapest-regio", "name": "Budapest" },
+    { "slug": "eszak-alfold", "name": "Észak-Alföld" },
+    { "slug": "del-alfold", "name": "Dél-Alföld" },
+    { "slug": "eszak-magyarorszag", "name": "Észak-Magyarország" },
+    { "slug": "del-dunantul", "name": "Dél-Dunántúl" },
+    { "slug": "nyugat-dunantul", "name": "Nyugat-Dunántúl" },
+    { "slug": "kozep-dunantul", "name": "Közép-Dunántúl" }
+  ],
+  "cities": [
+    { "slug": "budapest", "name": "Budapest", "region": "budapest-regio", "lat": 47.50, "lng": 19.04 },
+    { "slug": "debrecen", "name": "Debrecen", "region": "eszak-alfold", "lat": 47.53, "lng": 21.63 },
+    { "slug": "szeged", "name": "Szeged", "region": "del-alfold", "lat": 46.25, "lng": 20.15 },
+    { "slug": "miskolc", "name": "Miskolc", "region": "eszak-magyarorszag", "lat": 48.10, "lng": 20.78 },
+    { "slug": "pecs", "name": "Pécs", "region": "del-dunantul", "lat": 46.07, "lng": 18.23 },
+    { "slug": "gyor", "name": "Győr", "region": "nyugat-dunantul", "lat": 47.69, "lng": 17.63 },
+    { "slug": "nyiregyhaza", "name": "Nyíregyháza", "region": "eszak-alfold", "lat": 47.96, "lng": 21.72 },
+    { "slug": "kecskemet", "name": "Kecskemét", "region": "del-alfold", "lat": 46.91, "lng": 19.69 },
+    { "slug": "szekesfehervar", "name": "Székesfehérvár", "region": "kozep-dunantul", "lat": 47.19, "lng": 18.41 },
+    { "slug": "szombathely", "name": "Szombathely", "region": "nyugat-dunantul", "lat": 47.23, "lng": 16.62 }
+  ]
+}

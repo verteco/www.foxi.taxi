@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /sk/
+Disallow: /cs/
+Disallow: /hu/
+Disallow: /pl/
+Disallow: /ro/
+Disallow: /en/
+Disallow: /de/
+
+Sitemap: https://www.foxi.taxi/sitemap-index.xml

@@ -2,14 +2,13 @@
 import Layout from '../../../layouts/Layout.astro';
 import { t, supportedLangs } from '../../../i18n/translations';
 import type { Lang } from '../../../i18n/translations';
-import { CITIES, findCity, type City } from '../../../data/cities';
-import { getRegion, REGIONS } from '../../../data/regions';
+import { getAllCountries, getCitiesForLang, findCity } from '../../../data/loader';
 
 export function getStaticPaths() {
   const paths: { params: { lang: string; city: string } }[] = [];
-  for (const lang of Object.keys(CITIES)) {
-    for (const city of CITIES[lang]) {
-      paths.push({ params: { lang, city: city.slug } });
+  for (const country of getAllCountries()) {
+    for (const city of country.cities) {
+      paths.push({ params: { lang: country.lang, city: city.slug } });
     }
   }
   return paths;
@@ -21,20 +20,20 @@ const city = findCity(typedLang, citySlug!);
 if (!city) return Astro.redirect(`/${typedLang}/`);
 
 const i = (key: string) => t(typedLang, key);
-const region = REGIONS[city.countryCode] ?? getRegion(city.countryCode);
-const phone = city.phone ?? region.phone;
-const phoneDisplay = city.phoneDisplay ?? region.phoneDisplay;
-const phoneSecondary = city.phoneSecondary ?? region.phoneSecondary;
-const phoneSecondaryDisplay = city.phoneSecondaryDisplay ?? region.phoneSecondaryDisplay;
-const operator = city.operator ?? region.operator;
-const isActive = !!city.phone;
+const phone = city.phone;
+const phoneDisplay = city.phoneDisplay;
+const phoneSecondary = city.phoneSecondary;
+const phoneSecondaryDisplay = city.phoneSecondaryDisplay;
+const operator = city.operator;
+const isActive = city.isActive;
 
-const allCitiesInLang = CITIES[typedLang] ?? [];
-const metaTitle = `FOXI TAXI ${city.name} — ${i('meta.title').split('—')[1]?.trim() ?? ''}`;
-const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.`;
+const allCitiesInLang = getCitiesForLang(typedLang);
+const metaTitle = `Taxi ${city.name} | FOXI TAXI — ${i('hero.callNow')} ${isActive ? phoneDisplay : ''}`.trim();
+const metaDesc = `Taxi ${city.name} — ${i('hero.subtitle')} ${i('cta.subtitle')} ${isActive ? phoneDisplay : ''}`.trim();
+const noindex = !city.indexable;
 ---
 
-<Layout title={metaTitle} description={metaDesc} lang={typedLang} phone={phone}>
+<Layout title={metaTitle} description={metaDesc} lang={typedLang} phone={phone} cityName={city.name} lat={city.lat} lng={city.lng} noindex={noindex}>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-inner">
@@ -52,11 +51,11 @@ const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.
   <!-- Hero — city-specific -->
   <section class="hero">
     <div class="hero-badge">
-      <span>{region.flag}</span>
-      <span>{city.name}, {city.country}</span>
+      <span>{city.flag}</span>
+      <span>Taxi {city.name}, {city.countryName}</span>
     </div>
     <h1>
-      FOXI TAXI<br/>
+      Taxi<br/>
       <span class="accent">{city.name}</span>
     </h1>
     <p>{i('hero.subtitle')}</p>
@@ -81,13 +80,43 @@ const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.
     )}
     {!isActive && (
       <div class="region-label" style="margin-top:24px;">
-        FOXI TAXI {city.name} — Coming soon
+        Taxi {city.name} — {typedLang === 'sk' ? 'Už čoskoro' : typedLang === 'cs' ? 'Již brzy' : typedLang === 'hu' ? 'Hamarosan' : typedLang === 'pl' ? 'Wkrótce' : typedLang === 'de' ? 'Demnächst' : 'Coming soon'}
       </div>
     )}
   </section>
 
+  <!-- How It Works -->
+  <section class="how-it-works fade-section">
+    <div class="container">
+      <h2>{i('howItWorks.title')}</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>{i('howItWorks.step1.title')}</h3>
+          <p>{i('howItWorks.step1.desc')}</p>
+        </div>
+        <div class="step-connector" aria-hidden="true">
+          <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32m-8-8 8 8-8 8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>{i('howItWorks.step2.title')}</h3>
+          <p>{i('howItWorks.step2.desc')}</p>
+        </div>
+        <div class="step-connector" aria-hidden="true">
+          <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32m-8-8 8 8-8 8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>{i('howItWorks.step3.title')}</h3>
+          <p>{i('howItWorks.step3.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
-  <section class="features">
+  <section class="features fade-section">
     <div class="container">
       <h2>{i('features.title')}</h2>
       <div class="features-grid">
@@ -116,7 +145,7 @@ const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.
   </section>
 
   <!-- Other cities -->
-  <section class="cta">
+  <section class="cta fade-section">
     <h2>{typedLang === 'sk' ? 'Mestá' : typedLang === 'cs' ? 'Města' : typedLang === 'hu' ? 'Városok' : typedLang === 'pl' ? 'Miasta' : typedLang === 'de' ? 'Städte' : 'Cities'}</h2>
     <div class="cities-grid">
       {allCitiesInLang.map(c => (
@@ -135,14 +164,22 @@ const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.
     </div>
   </section>
 
+  <!-- Floating mobile CTA -->
+  {isActive && (
+    <a href={`tel:${phone}`} class="floating-cta" id="floating-cta" aria-label={i('hero.callNow')}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+  )}
+
   <!-- Footer -->
   <footer>
+    <div class="footer-brand">
+      <img src="/images/logo-footer.png" alt="FOXI" class="footer-logo" />
+      <div class="footer-tagline">{i('footer.tagline')}</div>
+    </div>
     <div class="footer-inner">
       <div class="footer-left">
         {i('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
-      </div>
-      <div class="footer-tagline">
-        {i('footer.tagline')}
       </div>
     </div>
     <div class="footer-section">
@@ -157,4 +194,30 @@ const metaDesc = `${i('hero.subtitle')} FOXI TAXI ${city.name}, ${city.country}.
       </div>
     </div>
   </footer>
+
+  <script>
+    // Fade-in sections on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+
+    // Show/hide floating CTA after scrolling past hero
+    const floatingCta = document.getElementById('floating-cta');
+    if (floatingCta) {
+      let shown = false;
+      window.addEventListener('scroll', () => {
+        const shouldShow = window.scrollY > window.innerHeight * 0.6;
+        if (shouldShow !== shown) {
+          shown = shouldShow;
+          floatingCta.classList.toggle('show', shouldShow);
+        }
+      }, { passive: true });
+    }
+  </script>
 </Layout>

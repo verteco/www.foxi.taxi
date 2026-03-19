@@ -1,0 +1,41 @@
+{
+  "countryCode": "CZ",
+  "lang": "cs",
+  "countryName": "Česko",
+  "flag": "\ud83c\udde8\ud83c\uddff",
+  "currency": "CZK",
+  "defaultPhone": "+420000000000",
+  "defaultPhoneDisplay": "+420 000 000 000",
+  "operator": "Coming soon",
+  "indexable": false,
+  "regions": [
+    { "slug": "praha-region", "name": "Praha" },
+    { "slug": "jihocesky-kraj", "name": "Jihočeský kraj" },
+    { "slug": "jihomoravsky-kraj", "name": "Jihomoravský kraj" },
+    { "slug": "karlovarsky-kraj", "name": "Karlovarský kraj" },
+    { "slug": "kralovehradecky-kraj", "name": "Královéhradecký kraj" },
+    { "slug": "liberecky-kraj", "name": "Liberecký kraj" },
+    { "slug": "moravskoslezsky-kraj", "name": "Moravskoslezský kraj" },
+    { "slug": "olomoucky-kraj", "name": "Olomoucký kraj" },
+    { "slug": "pardubicky-kraj", "name": "Pardubický kraj" },
+    { "slug": "plzensky-kraj", "name": "Plzeňský kraj" },
+    { "slug": "zlinsky-kraj", "name": "Zlínský kraj" },
+    { "slug": "ustecky-kraj", "name": "Ústecký kraj" },
+    { "slug": "vysocina", "name": "Kraj Vysočina" }
+  ],
+  "cities": [
+    { "slug": "praha", "name": "Praha", "region": "praha-region", "lat": 50.08, "lng": 14.44 },
+    { "slug": "brno", "name": "Brno", "region": "jihomoravsky-kraj", "lat": 49.20, "lng": 16.61 },
+    { "slug": "ostrava", "name": "Ostrava", "region": "moravskoslezsky-kraj", "lat": 49.83, "lng": 18.29 },
+    { "slug": "plzen", "name": "Plzeň", "region": "plzensky-kraj", "lat": 49.74, "lng": 13.38 },
+    { "slug": "liberec", "name": "Liberec", "region": "liberecky-kraj", "lat": 50.77, "lng": 15.06 },
+    { "slug": "olomouc", "name": "Olomouc", "region": "olomoucky-kraj", "lat": 49.59, "lng": 17.25 },
+    { "slug": "ceske-budejovice", "name": "České Budějovice", "region": "jihocesky-kraj", "lat": 48.97, "lng": 14.47 },
+    { "slug": "hradec-kralove", "name": "Hradec Králové", "region": "kralovehradecky-kraj", "lat": 50.21, "lng": 15.83 },
+    { "slug": "pardubice", "name": "Pardubice", "region": "pardubicky-kraj", "lat": 50.04, "lng": 15.78 },
+    { "slug": "zlin", "name": "Zlín", "region": "zlinsky-kraj", "lat": 49.23, "lng": 17.67 },
+    { "slug": "usti-nad-labem", "name": "Ústí nad Labem", "region": "ustecky-kraj", "lat": 50.66, "lng": 14.04 },
+    { "slug": "karlovy-vary", "name": "Karlovy Vary", "region": "karlovarsky-kraj", "lat": 50.23, "lng": 12.87 },
+    { "slug": "jihlava", "name": "Jihlava", "region": "vysocina", "lat": 49.40, "lng": 15.59 }
+  ]
+}

@@ -30,6 +30,12 @@ export const translations = {
         desc: 'Day or night, weekday or weekend — we drive.',
       },
     },
+    howItWorks: {
+      title: 'How It Works',
+      step1: { title: 'Call Us', desc: 'Dial the number or tap the button — it takes 10 seconds.' },
+      step2: { title: 'We Dispatch', desc: 'The nearest available driver is assigned to your pickup.' },
+      step3: { title: 'Enjoy the Ride', desc: 'Your driver arrives and takes you where you need to go.' },
+    },
     cta: {
       title: 'Need a ride?',
       subtitle: 'Tap the button to call your local FOXI TAXI dispatcher.',
@@ -72,6 +78,12 @@ export const translations = {
         title: 'K dispozícii 24/7',
         desc: 'Deň aj noc, pracovný deň aj víkend — jazdíme.',
       },
+    },
+    howItWorks: {
+      title: 'Ako to funguje',
+      step1: { title: 'Zavolajte nám', desc: 'Vytočte číslo alebo kliknite na tlačidlo — trvá to 10 sekúnd.' },
+      step2: { title: 'Vyšleme vodiča', desc: 'Najbližší dostupný vodič je priradený k vášmu vyzdvihnutiu.' },
+      step3: { title: 'Užite si jazdu', desc: 'Vodič príde a odvezie vás kam potrebujete.' },
     },
     cta: {
       title: 'Potrebujete odvoz?',
@@ -116,6 +128,12 @@ export const translations = {
         desc: 'Ve dne i v noci, ve všední den i o víkendu — jezdíme.',
       },
     },
+    howItWorks: {
+      title: 'Jak to funguje',
+      step1: { title: 'Zavolejte nám', desc: 'Vytočte číslo nebo klikněte na tlačítko — trvá to 10 sekund.' },
+      step2: { title: 'Vyšleme řidiče', desc: 'Nejbližší dostupný řidič je přiřazen k vašemu vyzvednutí.' },
+      step3: { title: 'Užijte si jízdu', desc: 'Řidič dorazí a odveze vás kam potřebujete.' },
+    },
     cta: {
       title: 'Potřebujete odvoz?',
       subtitle: 'Klikněte a zavolejte vašemu lokálnímu FOXI TAXI dispečerovi.',
@@ -158,6 +176,12 @@ export const translations = {
         title: 'Rund um die Uhr',
         desc: 'Tag und Nacht, werktags und am Wochenende — wir fahren.',
       },
+    },
+    howItWorks: {
+      title: 'So funktioniert es',
+      step1: { title: 'Rufen Sie uns an', desc: 'Wählen Sie die Nummer oder tippen Sie auf den Button — 10 Sekunden.' },
+      step2: { title: 'Wir disponieren', desc: 'Der nächste verfügbare Fahrer wird Ihrer Abholung zugewiesen.' },
+      step3: { title: 'Genießen Sie die Fahrt', desc: 'Ihr Fahrer kommt und bringt Sie ans Ziel.' },
     },
     cta: {
       title: 'Brauchen Sie eine Fahrt?',
@@ -202,6 +226,12 @@ export const translations = {
         desc: 'Éjjel-nappal, hétköznap és hétvégén — mi vezetünk.',
       },
     },
+    howItWorks: {
+      title: 'Hogyan működik',
+      step1: { title: 'Hívjon minket', desc: 'Tárcsázza a számot vagy kattintson a gombra — 10 másodperc.' },
+      step2: { title: 'Diszponálunk', desc: 'A legközelebbi elérhető sofőr az Ön felvételéhez van rendelve.' },
+      step3: { title: 'Élvezze az utat', desc: 'Sofőrje megérkezik és elviszi, ahová szeretne.' },
+    },
     cta: {
       title: 'Szüksége van fuvarra?',
       subtitle: 'Kattintson a gombra a helyi FOXI TAXI diszpécser hívásához.',
@@ -245,6 +275,12 @@ export const translations = {
         desc: 'W dzień i w nocy, w dni robocze i weekendy — jeździmy.',
       },
     },
+    howItWorks: {
+      title: 'Jak to działa',
+      step1: { title: 'Zadzwoń do nas', desc: 'Wybierz numer lub kliknij przycisk — zajmuje to 10 sekund.' },
+      step2: { title: 'Wysyłamy kierowcę', desc: 'Najbliższy dostępny kierowca zostaje przypisany do odbioru.' },
+      step3: { title: 'Ciesz się jazdą', desc: 'Kierowca przyjeżdża i zabiera Cię, dokąd chcesz.' },
+    },
     cta: {
       title: 'Potrzebujesz przejazdu?',
       subtitle: 'Kliknij przycisk, aby zadzwonić do lokalnego dyspozytora FOXI TAXI.',
@@ -255,6 +291,55 @@ export const translations = {
       privacy: 'Prywatność',
       terms: 'Regulamin',
       copyright: '\u00A9 {year} FOXI TAXI. Wszelkie prawa zastrzeżone.',
+    },
+  },
+  ro: {
+    meta: {
+      title: 'FOXI TAXI — Cursa ta, la un apel distanță',
+      description: 'Serviciu de taxi rapid și de încredere. Sună acum sau rezervă online. Disponibil 24/7.',
+    },
+    hero: {
+      title: 'Cursa ta,',
+      titleAccent: 'la un apel distanță',
+      subtitle: 'Rapid, de încredere, mereu la timp. FOXI TAXI te duce unde ai nevoie.',
+      callNow: 'Sună acum',
+      bookOnline: 'Rezervă online',
+    },
+    features: {
+      title: 'De ce FOXI TAXI?',
+      fast: {
+        title: 'Preluare rapidă',
+        desc: 'Timp mediu de sosire sub 5 minute în centrul orașului.',
+      },
+      safe: {
+        title: 'Sigur și de încredere',
+        desc: 'Șoferi profesioniști, vehicule asigurate, curse monitorizate.',
+      },
+      price: {
+        title: 'Prețuri corecte',
+        desc: 'Fără suprataxe. Ce vezi, asta plătești.',
+      },
+      available: {
+        title: 'Disponibil 24/7',
+        desc: 'Zi și noapte, în zilele lucrătoare și în weekend — conducem.',
+      },
+    },
+    howItWorks: {
+      title: 'Cum funcționează',
+      step1: { title: 'Sună-ne', desc: 'Formează numărul sau apasă butonul — durează 10 secunde.' },
+      step2: { title: 'Trimitem un șofer', desc: 'Cel mai apropiat șofer disponibil este alocat pentru preluare.' },
+      step3: { title: 'Bucură-te de cursă', desc: 'Șoferul sosește și te duce unde ai nevoie.' },
+    },
+    cta: {
+      title: 'Ai nevoie de o cursă?',
+      subtitle: 'Apasă butonul pentru a suna dispeceratul local FOXI TAXI.',
+      call: 'Sună',
+    },
+    footer: {
+      tagline: 'FOXI TAXI — Dispecerat taxi bazat pe tehnologie.',
+      privacy: 'Confidențialitate',
+      terms: 'Termeni',
+      copyright: '\u00A9 {year} FOXI TAXI. Toate drepturile rezervate.',
     },
   },
 } as const;

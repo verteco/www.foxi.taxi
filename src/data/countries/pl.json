@@ -1,0 +1,35 @@
+{
+  "countryCode": "PL",
+  "lang": "pl",
+  "countryName": "Polska",
+  "flag": "\ud83c\uddf5\ud83c\uddf1",
+  "currency": "PLN",
+  "defaultPhone": "+48000000000",
+  "defaultPhoneDisplay": "+48 000 000 000",
+  "operator": "Coming soon",
+  "indexable": false,
+  "regions": [
+    { "slug": "mazowieckie", "name": "Mazowieckie" },
+    { "slug": "malopolskie", "name": "Małopolskie" },
+    { "slug": "dolnoslaskie", "name": "Dolnośląskie" },
+    { "slug": "wielkopolskie", "name": "Wielkopolskie" },
+    { "slug": "pomorskie", "name": "Pomorskie" },
+    { "slug": "slaskie", "name": "Śląskie" },
+    { "slug": "lodzkie", "name": "Łódzkie" },
+    { "slug": "podkarpackie", "name": "Podkarpackie" },
+    { "slug": "lubelskie", "name": "Lubelskie" },
+    { "slug": "podlaskie", "name": "Podlaskie" }
+  ],
+  "cities": [
+    { "slug": "warszawa", "name": "Warszawa", "region": "mazowieckie", "lat": 52.23, "lng": 21.01 },
+    { "slug": "krakow", "name": "Kraków", "region": "malopolskie", "lat": 50.06, "lng": 19.94 },
+    { "slug": "wroclaw", "name": "Wrocław", "region": "dolnoslaskie", "lat": 51.11, "lng": 17.04 },
+    { "slug": "poznan", "name": "Poznań", "region": "wielkopolskie", "lat": 52.41, "lng": 16.93 },
+    { "slug": "gdansk", "name": "Gdańsk", "region": "pomorskie", "lat": 54.35, "lng": 18.65 },
+    { "slug": "katowice", "name": "Katowice", "region": "slaskie", "lat": 50.26, "lng": 19.02 },
+    { "slug": "lodz", "name": "Łódź", "region": "lodzkie", "lat": 51.76, "lng": 19.46 },
+    { "slug": "rzeszow", "name": "Rzeszów", "region": "podkarpackie", "lat": 50.04, "lng": 22.00 },
+    { "slug": "lublin", "name": "Lublin", "region": "lubelskie", "lat": 51.25, "lng": 22.57 },
+    { "slug": "bialystok", "name": "Białystok", "region": "podlaskie", "lat": 53.13, "lng": 23.16 }
+  ]
+}

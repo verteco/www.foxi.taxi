@@ -1,0 +1,87 @@
+# FOXI TAXI — Full Documentation
+
+> FOXI TAXI is a technology-powered taxi dispatch platform connecting local taxi operators with customers across Central and Eastern Europe.
+
+## Overview
+
+FOXI TAXI provides a unified taxi dispatch service with local operators in each city. Customers call a single local number, and the platform dispatches the nearest available driver.
+
+Website: https://www.foxi.taxi
+
+## Currently Active Cities
+
+### Slovakia — Kosicky kraj (Kosice Region)
+
+| City | Phone | Operator |
+|------|-------|----------|
+| Trebisov | 0950 706 000 | RS Dolina |
+| Kralovsky Chlmec | 0950 706 000 | RS Dolina |
+| Secovce | 0950 706 000 | RS Dolina |
+| Bysta | 0950 706 000 | RS Dolina |
+
+Secondary phone: 0950 795 150
+
+## Planned Coverage
+
+### Slovakia (79 cities, 8 regions)
+- Bratislavsky kraj: Bratislava, Malacky, Pezinok, Senec
+- Trnavsky kraj: Trnava, Dunajska Streda, Galanta, Hlohovec, Piestany, Senica, Skalica
+- Trenciansky kraj: Trencin, Banovce nad Bebravou, Ilava, Myjava, Nove Mesto nad Vahom, Partizanske, Povazska Bystrica, Prievidza, Puchov
+- Nitriansky kraj: Nitra, Komarno, Levice, Nove Zamky, Sala, Topolcany, Zlate Moravce
+- Zilinsky kraj: Zilina, Bytca, Cadca, Dolny Kubin, Kysucke Nove Mesto, Liptovsky Mikulas, Martin, Namestovo, Ruzomberok, Turcianske Teplice, Tvrdosin
+- Banskobystricky kraj: Banska Bystrica, Banska Stiavnica, Brezno, Detva, Krupina, Lucenec, Poltar, Revuca, Rimavska Sobota, Velky Krtis, Zvolen, Zarnovica, Ziar nad Hronom
+- Presovsky kraj: Presov, Bardejov, Humenne, Kezmarok, Levoca, Medzilaborce, Poprad, Sabinov, Snina, Stara Lubovna, Stropkov, Svidnik, Vranov nad Toplou
+- Kosicky kraj: Kosice, Gelnica, Michalovce, Roznava, Sobrance, Spisska Nova Ves, Trebisov, Kralovsky Chlmec, Secovce, Bysta
+
+### Czech Republic (13 cities)
+Praha, Brno, Ostrava, Plzen, Liberec, Olomouc, Ceske Budejovice, Hradec Kralove, Pardubice, Zlin, Usti nad Labem, Karlovy Vary, Jihlava
+
+### Hungary (10 cities)
+Budapest, Debrecen, Szeged, Miskolc, Pecs, Gyor, Nyiregyhaza, Kecskemet, Szekesfehervar, Szombathely
+
+### Poland (10 cities)
+Warszawa, Krakow, Wroclaw, Poznan, Gdansk, Katowice, Lodz, Rzeszow, Lublin, Bialystok
+
+### Romania (20 cities)
+Bucuresti, Cluj-Napoca, Timisoara, Iasi, Constanta, Craiova, Brasov, Galati, Ploiesti, Oradea, Braila, Arad, Pitesti, Sibiu, Bacau, Targu Mures, Baia Mare, Buzau, Satu Mare, Suceava
+
+## How It Works
+
+1. Customer calls the local FOXI TAXI number or taps the call button on the website
+2. The dispatch platform assigns the nearest available driver
+3. The driver arrives at the customer's location and completes the ride
+
+## Key Features
+
+- **Fast Pickup**: Average arrival time under 5 minutes in city center
+- **Safe & Reliable**: Professional drivers, insured vehicles, tracked rides
+- **Fair Pricing**: No surge pricing — transparent fares
+- **24/7 Available**: Day and night, weekdays and weekends
+
+## Supported Languages
+
+- Slovak (sk) — https://www.foxi.taxi/sk/
+- Czech (cs) — https://www.foxi.taxi/cs/
+- Hungarian (hu) — https://www.foxi.taxi/hu/
+- Polish (pl) — https://www.foxi.taxi/pl/
+- Romanian (ro) — https://www.foxi.taxi/ro/
+- English (en) — https://www.foxi.taxi/en/
+
+## URL Structure
+
+- Language homepage: https://www.foxi.taxi/{lang}/
+- City page: https://www.foxi.taxi/{lang}/{city-slug}/
+- Example: https://www.foxi.taxi/sk/trebisov/
+
+## Brand
+
+- Primary color: #5a57a5 (purple)
+- Accent color: #f37722 (orange)
+- Font: Outfit (Google Fonts)
+- Part of the FOXI platform (foxi.food, foxi.taxi)
+
+## Contact
+
+- Website: https://www.foxi.taxi
+- Phone (Slovakia): 0950 706 000
+- Phone (Slovakia secondary): 0950 795 150

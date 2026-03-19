@@ -1,0 +1,43 @@
+{
+  "countryCode": "RO",
+  "lang": "ro",
+  "countryName": "România",
+  "flag": "\ud83c\uddf7\ud83c\uddf4",
+  "currency": "RON",
+  "defaultPhone": "+40000000000",
+  "defaultPhoneDisplay": "+40 000 000 000",
+  "operator": "Coming soon",
+  "indexable": false,
+  "regions": [
+    { "slug": "bucuresti-ilfov", "name": "București-Ilfov" },
+    { "slug": "nord-vest", "name": "Nord-Vest" },
+    { "slug": "centru", "name": "Centru" },
+    { "slug": "nord-est", "name": "Nord-Est" },
+    { "slug": "sud-est", "name": "Sud-Est" },
+    { "slug": "sud-muntenia", "name": "Sud-Muntenia" },
+    { "slug": "sud-vest-oltenia", "name": "Sud-Vest Oltenia" },
+    { "slug": "vest", "name": "Vest" }
+  ],
+  "cities": [
+    { "slug": "bucuresti", "name": "București", "region": "bucuresti-ilfov", "lat": 44.43, "lng": 26.10 },
+    { "slug": "cluj-napoca", "name": "Cluj-Napoca", "region": "nord-vest", "lat": 46.77, "lng": 23.60 },
+    { "slug": "timisoara", "name": "Timișoara", "region": "vest", "lat": 45.76, "lng": 21.23 },
+    { "slug": "iasi", "name": "Iași", "region": "nord-est", "lat": 47.16, "lng": 27.58 },
+    { "slug": "constanta", "name": "Constanța", "region": "sud-est", "lat": 44.18, "lng": 28.63 },
+    { "slug": "craiova", "name": "Craiova", "region": "sud-vest-oltenia", "lat": 44.32, "lng": 23.80 },
+    { "slug": "brasov", "name": "Brașov", "region": "centru", "lat": 45.66, "lng": 25.61 },
+    { "slug": "galati", "name": "Galați", "region": "sud-est", "lat": 45.44, "lng": 28.05 },
+    { "slug": "ploiesti", "name": "Ploiești", "region": "sud-muntenia", "lat": 44.94, "lng": 26.03 },
+    { "slug": "oradea", "name": "Oradea", "region": "nord-vest", "lat": 47.07, "lng": 21.92 },
+    { "slug": "braila", "name": "Brăila", "region": "sud-est", "lat": 45.27, "lng": 27.96 },
+    { "slug": "arad", "name": "Arad", "region": "vest", "lat": 46.17, "lng": 21.32 },
+    { "slug": "pitesti", "name": "Pitești", "region": "sud-muntenia", "lat": 44.86, "lng": 24.87 },
+    { "slug": "sibiu", "name": "Sibiu", "region": "centru", "lat": 45.80, "lng": 24.15 },
+    { "slug": "bacau", "name": "Bacău", "region": "nord-est", "lat": 46.57, "lng": 26.91 },
+    { "slug": "targu-mures", "name": "Târgu Mureș", "region": "centru", "lat": 46.54, "lng": 24.56 },
+    { "slug": "baia-mare", "name": "Baia Mare", "region": "nord-vest", "lat": 47.66, "lng": 23.58 },
+    { "slug": "buzau", "name": "Buzău", "region": "sud-est", "lat": 45.15, "lng": 26.82 },
+    { "slug": "satu-mare", "name": "Satu Mare", "region": "nord-vest", "lat": 47.79, "lng": 22.89 },
+    { "slug": "suceava", "name": "Suceava", "region": "nord-est", "lat": 47.63, "lng": 26.26 }
+  ]
+}

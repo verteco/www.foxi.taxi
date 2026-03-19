@@ -1,8 +1,7 @@
 ---
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
-import { DEFAULT_REGION, REGIONS } from '../data/regions';
-import { getCitiesForLang } from '../data/cities';
+import { getCitiesForLang, getDefaultRegion, getRegionsForGeo } from '../data/loader';
 
 interface Props {
   lang: Lang;
@@ -10,27 +9,11 @@ interface Props {
 
 const { lang } = Astro.props;
 const i = (key: string) => t(lang, key);
-const region = DEFAULT_REGION;
+const region = getDefaultRegion();
 const cities = getCitiesForLang(lang);
 
 // Build regions JSON for client-side geo detection
-const regionsJson = JSON.stringify(
-  Object.fromEntries(
-    Object.entries(REGIONS).map(([code, r]) => [
-      code,
-      {
-        phone: r.phone,
-        display: r.phoneDisplay,
-        country: r.country,
-        city: r.city,
-        flag: r.flag,
-        operator: r.operator,
-        phoneSecondary: r.phoneSecondary,
-        phoneSecondaryDisplay: r.phoneSecondaryDisplay,
-      },
-    ]),
-  ),
-);
+const regionsJson = JSON.stringify(getRegionsForGeo());
 ---
 
 <!-- Navbar -->
@@ -52,7 +35,7 @@ const regionsJson = JSON.stringify(
   <img src="/images/foxi-mascot.png" alt="" class="hero-mascot" aria-hidden="true" />
   <div class="hero-badge">
     <span id="hero-flag">&#127757;</span>
-    <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'de' ? 'Standort wird erkannt...' : 'Detecting location...'}</span>
+    <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'ro' ? 'Detectare locație...' : 'Detecting location...'}</span>
   </div>
   <h1>
     {i('hero.title')}<br/>
@@ -71,8 +54,38 @@ const regionsJson = JSON.stringify(
   <div class="operator-label" id="operator-label"></div>
 </section>
 
+<!-- How It Works -->
+<section class="how-it-works fade-section">
+  <div class="container">
+    <h2>{i('howItWorks.title')}</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>{i('howItWorks.step1.title')}</h3>
+        <p>{i('howItWorks.step1.desc')}</p>
+      </div>
+      <div class="step-connector" aria-hidden="true">
+        <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32m-8-8 8 8-8 8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>{i('howItWorks.step2.title')}</h3>
+        <p>{i('howItWorks.step2.desc')}</p>
+      </div>
+      <div class="step-connector" aria-hidden="true">
+        <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32m-8-8 8 8-8 8" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>{i('howItWorks.step3.title')}</h3>
+        <p>{i('howItWorks.step3.desc')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Features -->
-<section class="features">
+<section class="features fade-section">
   <div class="container">
     <h2>{i('features.title')}</h2>
     <div class="features-grid">
@@ -101,23 +114,29 @@ const regionsJson = JSON.stringify(
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="cta fade-section">
   <h2>{i('cta.title')}</h2>
   <p>{i('cta.subtitle')}</p>
-  <a href={`tel:${region.phone}`} class="cta-phone" id="cta-phone">
+  <a href={`tel:${region.phone}`} class="cta-phone pulse-glow" id="cta-phone">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     <span>{i('cta.call')} <span id="cta-phone-number">{region.phoneDisplay}</span></span>
   </a>
 </section>
 
+<!-- Floating mobile CTA -->
+<a href={`tel:${region.phone}`} class="floating-cta" id="floating-cta" aria-label={i('hero.callNow')}>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+
 <!-- Footer -->
 <footer>
+  <div class="footer-brand">
+    <img src="/images/logo-footer.png" alt="FOXI" class="footer-logo" />
+    <div class="footer-tagline">{i('footer.tagline')}</div>
+  </div>
   <div class="footer-inner">
     <div class="footer-left">
       {i('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
-    </div>
-    <div class="footer-tagline">
-      {i('footer.tagline')}
     </div>
   </div>
 
@@ -127,8 +146,8 @@ const regionsJson = JSON.stringify(
     <div class="footer-dropdown" id="dd-lang">
       <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
         <div>
-          <div class="toggle-label">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'de' ? 'Sprache' : 'Language'}</div>
-          <div class="toggle-value">{lang === 'en' ? 'English' : lang === 'sk' ? 'Slovenčina' : lang === 'cs' ? 'Čeština' : lang === 'de' ? 'Deutsch' : lang === 'hu' ? 'Magyar' : 'Polski'}</div>
+          <div class="toggle-label">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'ro' ? 'Limbă' : 'Language'}</div>
+          <div class="toggle-value">{lang === 'en' ? 'English' : lang === 'sk' ? 'Slovenčina' : lang === 'cs' ? 'Čeština' : lang === 'hu' ? 'Magyar' : lang === 'pl' ? 'Polski' : lang === 'ro' ? 'Română' : 'English'}</div>
         </div>
         <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
       </button>
@@ -136,9 +155,9 @@ const regionsJson = JSON.stringify(
         <a href="/en/" class:list={[{ active: lang === 'en' }]}>English</a>
         <a href="/sk/" class:list={[{ active: lang === 'sk' }]}>Slovenčina</a>
         <a href="/cs/" class:list={[{ active: lang === 'cs' }]}>Čeština</a>
-        <a href="/de/" class:list={[{ active: lang === 'de' }]}>Deutsch</a>
         <a href="/hu/" class:list={[{ active: lang === 'hu' }]}>Magyar</a>
         <a href="/pl/" class:list={[{ active: lang === 'pl' }]}>Polski</a>
+        <a href="/ro/" class:list={[{ active: lang === 'ro' }]}>Română</a>
       </div>
     </div>
 
@@ -146,8 +165,8 @@ const regionsJson = JSON.stringify(
     <div class="footer-dropdown" id="dd-region">
       <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
         <div>
-          <div class="toggle-label">{lang === 'sk' ? 'Mesto' : lang === 'cs' ? 'Město' : lang === 'hu' ? 'Város' : lang === 'pl' ? 'Miasto' : lang === 'de' ? 'Stadt' : 'City'}</div>
-          <div class="toggle-value" id="dd-region-value">{lang === 'sk' ? 'Vyberte mesto' : lang === 'cs' ? 'Vyberte město' : lang === 'hu' ? 'Válasszon várost' : lang === 'pl' ? 'Wybierz miasto' : lang === 'de' ? 'Stadt wählen' : 'Select city'}</div>
+          <div class="toggle-label">{lang === 'sk' ? 'Mesto' : lang === 'cs' ? 'Město' : lang === 'hu' ? 'Város' : lang === 'pl' ? 'Miasto' : lang === 'ro' ? 'Oraș' : 'City'}</div>
+          <div class="toggle-value" id="dd-region-value">{lang === 'sk' ? 'Vyberte mesto' : lang === 'cs' ? 'Vyberte město' : lang === 'hu' ? 'Válasszon várost' : lang === 'pl' ? 'Wybierz miasto' : lang === 'ro' ? 'Selectați orașul' : 'Select city'}</div>
         </div>
         <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
       </button>
@@ -155,7 +174,7 @@ const regionsJson = JSON.stringify(
         {cities.map(c => (
           <a href={`/${lang}/${c.slug}/`}>
             <span>{c.name}</span>
-            {c.phone ? (
+            {c.isActive ? (
               <span class="dd-phone">{c.phoneDisplay}</span>
             ) : (
               <span class="dd-soon">Coming soon</span>
@@ -167,13 +186,38 @@ const regionsJson = JSON.stringify(
   </div>
 </footer>
 
-<!-- Close dropdowns when clicking outside -->
+<!-- Close dropdowns when clicking outside + scroll animations -->
 <script>
   document.addEventListener('click', (e) => {
     document.querySelectorAll('.footer-dropdown.open').forEach(dd => {
       if (!dd.contains(e.target as Node)) dd.classList.remove('open');
     });
   });
+
+  // Fade-in sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+
+  // Show/hide floating CTA after scrolling past hero
+  const floatingCta = document.getElementById('floating-cta');
+  if (floatingCta) {
+    let shown = false;
+    window.addEventListener('scroll', () => {
+      const shouldShow = window.scrollY > window.innerHeight * 0.6;
+      if (shouldShow !== shown) {
+        shown = shouldShow;
+        floatingCta.classList.toggle('show', shouldShow);
+      }
+    }, { passive: true });
+  }
 </script>
 
 <!-- Client-side geolocation — 2s timeout, then fallback to language -->
@@ -182,7 +226,7 @@ const regionsJson = JSON.stringify(
 
   // Language → country fallback mapping
   const LANG_FALLBACK: Record<string, string> = {
-    sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', de: 'AT', en: 'SK',
+    sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', ro: 'RO', en: 'SK',
   };
 
   let resolved = false;
