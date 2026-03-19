@@ -6,6 +6,7 @@ export interface CityJson {
   region: string;           // region slug (e.g. "kosicky-kraj")
   lat: number;
   lng: number;
+  description?: string | null;
   phone?: string | null;
   phoneDisplay?: string | null;
   phoneSecondary?: string | null;
@@ -41,6 +42,7 @@ export interface CityWithContext {
   name: string;
   lat: number;
   lng: number;
+  description?: string;
   // Phone (city-level or country default)
   phone: string;
   phoneDisplay: string;

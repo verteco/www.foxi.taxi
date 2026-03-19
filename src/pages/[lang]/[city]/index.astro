@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import { t, supportedLangs } from '../../../i18n/translations';
 import type { Lang } from '../../../i18n/translations';
-import { getAllCountries, getCitiesForLang, findCity } from '../../../data/loader';
+import { getAllCountries, getCitiesForLang, findCity, getNearbyCities } from '../../../data/loader';
 
 export function getStaticPaths() {
   const paths: { params: { lang: string; city: string } }[] = [];
@@ -28,6 +28,7 @@ const operator = city.operator;
 const isActive = city.isActive;
 
 const allCitiesInLang = getCitiesForLang(typedLang);
+const nearbyCities = getNearbyCities(typedLang, citySlug!, 6);
 const metaTitle = `Taxi ${city.name} | FOXI TAXI — ${i('hero.callNow')} ${isActive ? phoneDisplay : ''}`.trim();
 const metaDesc = `Taxi ${city.name} — ${i('hero.subtitle')} ${i('cta.subtitle')} ${isActive ? phoneDisplay : ''}`.trim();
 const noindex = !city.indexable;
@@ -162,6 +163,7 @@ const faqItems = [
         <>
           <h2>{c('cityContent.aboutTitle')}</h2>
           <div class="about-content">
+            {city.description && <p><strong>{city.description}</strong></p>}
             <p>{c('cityContent.aboutText1')}</p>
             <p>{c('cityContent.aboutText2')}</p>
             <p>{c('cityContent.aboutText3')}</p>
@@ -206,7 +208,28 @@ const faqItems = [
     </section>
   )}
 
-  <!-- Other cities -->
+  <!-- Nearby cities -->
+  {nearbyCities.length > 0 && (
+    <section class="nearby-section fade-section">
+      <div class="container">
+        <h2>Taxi {typedLang === 'sk' ? 'v okolí' : typedLang === 'cs' ? 'v okolí' : typedLang === 'hu' ? 'a környéken' : typedLang === 'pl' ? 'w okolicy' : typedLang === 'ro' ? 'în zonă' : 'nearby'} {city.name}</h2>
+        <div class="cities-grid" style="max-width:700px;">
+          {nearbyCities.map(nc => (
+            <a href={`/${typedLang}/${nc.slug}/`} class="city-card">
+              <span class="city-name">{nc.name}</span>
+              {nc.isActive ? (
+                <span class="city-phone">{nc.phoneDisplay}</span>
+              ) : (
+                <span class="city-soon">{i('cta.comingSoon')}</span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- All cities -->
   <section class="cta fade-section" style="padding-top:0;">
     <h2>{i('cta.citiesTitle')}</h2>
     <div class="cities-grid">

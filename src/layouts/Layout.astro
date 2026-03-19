@@ -42,8 +42,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://www.foxi.taxi/images/og-image.png" />
 
+    <!-- Font: preconnect + preload for fast render -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Hreflang alternates -->
+    <link rel="alternate" hreflang="sk" href={`https://www.foxi.taxi/sk${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="cs" href={`https://www.foxi.taxi/cs${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="hu" href={`https://www.foxi.taxi/hu${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="pl" href={`https://www.foxi.taxi/pl${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="ro" href={`https://www.foxi.taxi/ro${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="en" href={`https://www.foxi.taxi/en${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
+    <link rel="alternate" hreflang="x-default" href={`https://www.foxi.taxi/sk${Astro.url.pathname.replace(/^\/(sk|cs|hu|pl|ro|en)/, '')}`} />
 
     <!-- Schema.org TaxiService -->
     <script type="application/ld+json" set:html={JSON.stringify({

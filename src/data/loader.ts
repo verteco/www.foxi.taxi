@@ -47,6 +47,7 @@ function buildCity(city: CountryJson['cities'][0], country: CountryJson): CityWi
     name: city.name,
     lat: city.lat,
     lng: city.lng,
+    description: city.description ?? undefined,
     phone: city.phone ?? country.defaultPhone,
     phoneDisplay: city.phoneDisplay ?? country.defaultPhoneDisplay,
     phoneSecondary: city.phoneSecondary ?? country.defaultPhoneSecondary ?? undefined,
@@ -133,6 +134,33 @@ export function isLangIndexable(lang: string): boolean {
 /** Get only the cities that should be indexed (for sitemap) */
 export function getIndexableCities(): CityWithContext[] {
   return countries.flatMap(c => c.cities.map(city => buildCity(city, c)).filter(city => city.indexable));
+}
+
+/** Get nearby cities (same region, excluding current city) */
+export function getNearbyCities(lang: string, citySlug: string, limit = 6): CityWithContext[] {
+  const city = findCity(lang, citySlug);
+  if (!city) return [];
+  const country = byLang.get(lang);
+  if (!country) return [];
+
+  // Same region first, then other nearby by distance
+  const sameRegion = country.cities
+    .filter(c => c.region === city.regionSlug && c.slug !== citySlug)
+    .map(c => buildCity(c, country));
+
+  if (sameRegion.length >= limit) return sameRegion.slice(0, limit);
+
+  // Fill with other cities sorted by distance
+  const otherCities = country.cities
+    .filter(c => c.region !== city.regionSlug && c.slug !== citySlug)
+    .map(c => ({
+      city: buildCity(c, country),
+      dist: Math.sqrt((c.lat - city.lat) ** 2 + (c.lng - city.lng) ** 2),
+    }))
+    .sort((a, b) => a.dist - b.dist)
+    .map(c => c.city);
+
+  return [...sameRegion, ...otherCities].slice(0, limit);
 }
 
 /** Region data for geolocation (used in client-side script) */

@@ -3,7 +3,7 @@
    Primary: #5a57a5 (purple)  Accent: #f37722 (orange)
    Font: Outfit (same as foxifood.com)
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+/* Font loaded via <link> in Layout.astro for better performance */
 
 :root {
   --primary: #5a57a5;
@@ -803,6 +803,19 @@ footer {
   font-size: 15px;
   line-height: 1.7;
   font-weight: 300;
+}
+
+/* ---- NEARBY CITIES ---- */
+.nearby-section {
+  padding: 60px 24px;
+  background: var(--dark);
+}
+.nearby-section h2 {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--white);
 }
 
 /* Cities grid (for city pages) */
