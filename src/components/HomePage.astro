@@ -31,10 +31,10 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 
 <!-- Hero -->
 <section class="hero">
-  <img src="/images/foxi-mascot-opt.jpg" alt="" class="hero-mascot" aria-hidden="true" />
+  <img src="/images/foxi-mascot-opt.jpg" alt="" class="hero-mascot" aria-hidden="true" loading="lazy" width="266" height="400" />
   <div class="hero-badge">
     <span id="hero-flag">&#127757;</span>
-    <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'ro' ? 'Detectare locație...' : 'Detecting location...'}</span>
+    <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'ro' ? 'Detectare locație...' : lang === 'de' ? 'Standort wird ermittelt...' : 'Detecting location...'}</span>
   </div>
   <h1>
     {i('hero.title')}<br/>
@@ -145,8 +145,8 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
     <div class="footer-dropdown" id="dd-lang">
       <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
         <div>
-          <div class="toggle-label">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'ro' ? 'Limbă' : 'Language'}</div>
-          <div class="toggle-value">{lang === 'en' ? 'English' : lang === 'sk' ? 'Slovenčina' : lang === 'cs' ? 'Čeština' : lang === 'hu' ? 'Magyar' : lang === 'pl' ? 'Polski' : lang === 'ro' ? 'Română' : 'English'}</div>
+          <div class="toggle-label">{lang === 'sk' ? 'Jazyk' : lang === 'cs' ? 'Jazyk' : lang === 'hu' ? 'Nyelv' : lang === 'pl' ? 'Język' : lang === 'ro' ? 'Limbă' : lang === 'de' ? 'Sprache' : 'Language'}</div>
+          <div class="toggle-value">{lang === 'en' ? 'English' : lang === 'sk' ? 'Slovenčina' : lang === 'cs' ? 'Čeština' : lang === 'hu' ? 'Magyar' : lang === 'pl' ? 'Polski' : lang === 'ro' ? 'Română' : lang === 'de' ? 'Deutsch' : 'English'}</div>
         </div>
         <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
       </button>
@@ -157,6 +157,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
         <a href="/hu/" class:list={[{ active: lang === 'hu' }]}>Magyar</a>
         <a href="/pl/" class:list={[{ active: lang === 'pl' }]}>Polski</a>
         <a href="/ro/" class:list={[{ active: lang === 'ro' }]}>Română</a>
+        <a href="/de/" class:list={[{ active: lang === 'de' }]}>Deutsch</a>
       </div>
     </div>
 
@@ -164,8 +165,8 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
     <div class="footer-dropdown" id="dd-region">
       <button class="footer-dropdown-toggle" type="button" onclick="this.parentElement.classList.toggle('open')">
         <div>
-          <div class="toggle-label">{lang === 'sk' ? 'Mesto' : lang === 'cs' ? 'Město' : lang === 'hu' ? 'Város' : lang === 'pl' ? 'Miasto' : lang === 'ro' ? 'Oraș' : 'City'}</div>
-          <div class="toggle-value" id="dd-region-value">{lang === 'sk' ? 'Vyberte mesto' : lang === 'cs' ? 'Vyberte město' : lang === 'hu' ? 'Válasszon várost' : lang === 'pl' ? 'Wybierz miasto' : lang === 'ro' ? 'Selectați orașul' : 'Select city'}</div>
+          <div class="toggle-label">{lang === 'sk' ? 'Mesto' : lang === 'cs' ? 'Město' : lang === 'hu' ? 'Város' : lang === 'pl' ? 'Miasto' : lang === 'ro' ? 'Oraș' : lang === 'de' ? 'Stadt' : 'City'}</div>
+          <div class="toggle-value" id="dd-region-value">{lang === 'sk' ? 'Vyberte mesto' : lang === 'cs' ? 'Vyberte město' : lang === 'hu' ? 'Válasszon várost' : lang === 'pl' ? 'Wybierz miasto' : lang === 'ro' ? 'Selectați orașul' : lang === 'de' ? 'Stadt wählen' : 'Select city'}</div>
         </div>
         <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
       </button>
@@ -185,8 +186,20 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
   </div>
 </footer>
 
-<!-- Close dropdowns when clicking outside + scroll animations -->
+<!-- Close dropdowns when clicking outside + scroll animations + tel tracking -->
 <script>
+  // Track phone call clicks in GA4
+  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'phone_call', {
+          event_category: 'conversion',
+          event_label: (link as HTMLAnchorElement).href,
+        });
+      }
+    });
+  });
+
   document.addEventListener('click', (e) => {
     document.querySelectorAll('.footer-dropdown.open').forEach(dd => {
       if (!dd.contains(e.target as Node)) dd.classList.remove('open');
@@ -225,7 +238,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 
   // Language → country fallback mapping
   const LANG_FALLBACK: Record<string, string> = {
-    sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', ro: 'RO', en: 'SK',
+    sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', ro: 'RO', de: 'AT', en: 'SK',
   };
 
   let resolved = false;

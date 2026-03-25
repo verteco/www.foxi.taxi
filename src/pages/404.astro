@@ -2,10 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="404 — FOXI TAXI" description="Page not found." lang="sk" noindex={true}>
+<Layout title="404 — FOXI TAXI" description="Page not found." lang="en" noindex={true}>
   <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;">
     <h1 style="font-size:clamp(4rem,10vw,8rem);font-weight:900;background:linear-gradient(135deg,var(--accent),#ff9a56);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;">404</h1>
-    <p style="font-size:18px;color:var(--gray-300);margin-bottom:32px;font-weight:300;">Stránka nebola nájdená</p>
-    <a href="/sk/" class="btn btn-primary">Späť na hlavnú stránku</a>
+    <p id="msg-404" style="font-size:18px;color:var(--gray-300);margin-bottom:32px;font-weight:300;">Page not found</p>
+    <a id="link-404" href="/en/" class="btn btn-primary">Back to homepage</a>
   </div>
+  <script is:inline>
+    var msgs = {
+      sk: { text: 'Stránka nebola nájdená', btn: 'Späť na hlavnú stránku' },
+      cs: { text: 'Stránka nebyla nalezena', btn: 'Zpět na hlavní stránku' },
+      hu: { text: 'Az oldal nem található', btn: 'Vissza a főoldalra' },
+      pl: { text: 'Strona nie została znaleziona', btn: 'Powrót na stronę główną' },
+      ro: { text: 'Pagina nu a fost găsită', btn: 'Înapoi la pagina principală' },
+      de: { text: 'Seite nicht gefunden', btn: 'Zurück zur Startseite' },
+      en: { text: 'Page not found', btn: 'Back to homepage' },
+    };
+    var pathLang = window.location.pathname.split('/')[1];
+    var lang = msgs[pathLang] ? pathLang : 'en';
+    document.getElementById('msg-404').textContent = msgs[lang].text;
+    var link = document.getElementById('link-404');
+    link.textContent = msgs[lang].btn;
+    link.href = '/' + lang + '/';
+  </script>
 </Layout>

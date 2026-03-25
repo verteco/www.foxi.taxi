@@ -49,7 +49,14 @@ function serveStatic(req, res) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       fs.readFile(path.join(DIST, '404.html'), (err404, data404) => {
-        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.writeHead(404, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'X-XSS-Protection': '0',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+        });
         res.end(err404 ? 'Not Found' : data404);
       });
       return;
@@ -64,6 +71,10 @@ function serveStatic(req, res) {
       'Content-Type': mime,
       'Cache-Control': cacheControl,
       'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '0',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
     });
     res.end(data);
   });

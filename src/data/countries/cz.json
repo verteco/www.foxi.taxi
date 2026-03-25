@@ -24,18 +24,18 @@
     { "slug": "vysocina", "name": "Kraj Vysočina" }
   ],
   "cities": [
-    { "slug": "praha", "name": "Praha", "region": "praha-region", "lat": 50.08, "lng": 14.44 },
-    { "slug": "brno", "name": "Brno", "region": "jihomoravsky-kraj", "lat": 49.20, "lng": 16.61 },
-    { "slug": "ostrava", "name": "Ostrava", "region": "moravskoslezsky-kraj", "lat": 49.83, "lng": 18.29 },
-    { "slug": "plzen", "name": "Plzeň", "region": "plzensky-kraj", "lat": 49.74, "lng": 13.38 },
-    { "slug": "liberec", "name": "Liberec", "region": "liberecky-kraj", "lat": 50.77, "lng": 15.06 },
-    { "slug": "olomouc", "name": "Olomouc", "region": "olomoucky-kraj", "lat": 49.59, "lng": 17.25 },
-    { "slug": "ceske-budejovice", "name": "České Budějovice", "region": "jihocesky-kraj", "lat": 48.97, "lng": 14.47 },
-    { "slug": "hradec-kralove", "name": "Hradec Králové", "region": "kralovehradecky-kraj", "lat": 50.21, "lng": 15.83 },
-    { "slug": "pardubice", "name": "Pardubice", "region": "pardubicky-kraj", "lat": 50.04, "lng": 15.78 },
-    { "slug": "zlin", "name": "Zlín", "region": "zlinsky-kraj", "lat": 49.23, "lng": 17.67 },
-    { "slug": "usti-nad-labem", "name": "Ústí nad Labem", "region": "ustecky-kraj", "lat": 50.66, "lng": 14.04 },
-    { "slug": "karlovy-vary", "name": "Karlovy Vary", "region": "karlovarsky-kraj", "lat": 50.23, "lng": 12.87 },
-    { "slug": "jihlava", "name": "Jihlava", "region": "vysocina", "lat": 49.40, "lng": 15.59 }
+    { "slug": "praha", "name": "Praha", "region": "praha-region", "lat": 50.08, "lng": 14.44, "description": "Praha je hlavní město Česka a nejvyhledávanější turistická destinace ve střední Evropě. Taxi Praha pokrývá celé město včetně Starého Města, Malé Strany, Žižkova a letiště Václava Havla." },
+    { "slug": "brno", "name": "Brno", "region": "jihomoravsky-kraj", "lat": 49.20, "lng": 16.61, "description": "Brno je druhé největší město Česka a centrum Jihomoravského kraje. Taxi Brno zajišťuje přepravu po celém městě včetně centra, Starého Brna, Králova Pole a okolí." },
+    { "slug": "ostrava", "name": "Ostrava", "region": "moravskoslezsky-kraj", "lat": 49.83, "lng": 18.29, "description": "Ostrava je třetí největší město Česka a průmyslové srdce Moravy. Taxi Ostrava pokrývá celé město včetně Poruby, Vítkovic, Hrabůvky a přilehlých obcí." },
+    { "slug": "plzen", "name": "Plzeň", "region": "plzensky-kraj", "lat": 49.74, "lng": 13.38, "description": "Plzeň je známá po celém světě díky svému pivu a bohaté průmyslové historii. Taxi Plzeň zajišťuje přepravu po celém městě včetně centra, Borů, Slovany a Lochotína." },
+    { "slug": "liberec", "name": "Liberec", "region": "liberecky-kraj", "lat": 50.77, "lng": 15.06, "description": "Liberec je brána do Jizerských hor a centrum severních Čech. Taxi Liberec pokrývá město a okolí včetně Ještědu, Rochlice a Vratislavic." },
+    { "slug": "olomouc", "name": "Olomouc", "region": "olomoucky-kraj", "lat": 49.59, "lng": 17.25, "description": "Olomouc je historické univerzitní město s barokním centrem zapsaným na seznamu UNESCO. Taxi Olomouc zajišťuje přepravu po celém městě a okolí." },
+    { "slug": "ceske-budejovice", "name": "České Budějovice", "region": "jihocesky-kraj", "lat": 48.97, "lng": 14.47, "description": "České Budějovice jsou metropolí jižních Čech a domovem slavného Budvaru. Taxi České Budějovice pokrývá celé město včetně centra a přilehlých částí." },
+    { "slug": "hradec-kralove", "name": "Hradec Králové", "region": "kralovehradecky-kraj", "lat": 50.21, "lng": 15.83, "description": "Hradec Králové je moderní univerzitní město na soutoku Labe a Orlice. Taxi Hradec Králové zajišťuje přepravu po celém městě a okolí." },
+    { "slug": "pardubice", "name": "Pardubice", "region": "pardubicky-kraj", "lat": 50.04, "lng": 15.78, "description": "Pardubice jsou známé svými perníky, Velkou pardubickou a letištěm. Taxi Pardubice pokrývá celé město včetně centra, Polabin a Dukly." },
+    { "slug": "zlin", "name": "Zlín", "region": "zlinsky-kraj", "lat": 49.23, "lng": 17.67, "description": "Zlín je jedinečné město s funkcionalistickou architekturou a dědectvím firmy Baťa. Taxi Zlín zajišťuje přepravu po celém městě a okolí." },
+    { "slug": "usti-nad-labem", "name": "Ústí nad Labem", "region": "ustecky-kraj", "lat": 50.66, "lng": 14.04, "description": "Ústí nad Labem je krajské město v severozápadních Čechách u hranic s Německem. Taxi Ústí nad Labem pokrývá celé město a přilehlé oblasti." },
+    { "slug": "karlovy-vary", "name": "Karlovy Vary", "region": "karlovarsky-kraj", "lat": 50.23, "lng": 12.87, "description": "Karlovy Vary jsou světoznámé lázeňské město s bohatou historií a filmovým festivalem. Taxi Karlovy Vary zajišťuje přepravu po městě a do okolních lázní." },
+    { "slug": "jihlava", "name": "Jihlava", "region": "vysocina", "lat": 49.40, "lng": 15.59, "description": "Jihlava je historické hornické město a centrum Vysočiny. Taxi Jihlava pokrývá celé město včetně centra, průmyslových zón a okolních obcí." }
   ]
 }

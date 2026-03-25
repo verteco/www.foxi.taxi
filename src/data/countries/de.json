@@ -1,0 +1,27 @@
+{
+  "countryCode": "AT",
+  "lang": "de",
+  "countryName": "Österreich",
+  "flag": "\ud83c\udde6\ud83c\uddf9",
+  "currency": "EUR",
+  "defaultPhone": "+43000000000",
+  "defaultPhoneDisplay": "+43 000 000 000",
+  "operator": "Coming soon",
+  "indexable": false,
+  "regions": [
+    { "slug": "wien", "name": "Wien" },
+    { "slug": "steiermark", "name": "Steiermark" },
+    { "slug": "oberoesterreich", "name": "Oberösterreich" },
+    { "slug": "salzburg-land", "name": "Salzburg" },
+    { "slug": "tirol", "name": "Tirol" },
+    { "slug": "kaernten", "name": "Kärnten" }
+  ],
+  "cities": [
+    { "slug": "wien", "name": "Wien", "region": "wien", "lat": 48.21, "lng": 16.37, "description": "Wien ist die Bundeshauptstadt Österreichs und ein kulturelles Zentrum Europas. Taxi Wien deckt die gesamte Stadt ab, einschließlich Innere Stadt, Flughafen und alle Bezirke." },
+    { "slug": "graz", "name": "Graz", "region": "steiermark", "lat": 47.07, "lng": 15.44, "description": "Graz ist die zweitgrößte Stadt Österreichs und Hauptstadt der Steiermark. Taxi Graz deckt die Altstadt, Universität und das gesamte Stadtgebiet ab." },
+    { "slug": "linz", "name": "Linz", "region": "oberoesterreich", "lat": 48.31, "lng": 14.29, "description": "Linz ist die Landeshauptstadt von Oberösterreich an der Donau. Taxi Linz deckt das gesamte Stadtgebiet, den Hauptplatz und den Industriebereich ab." },
+    { "slug": "salzburg", "name": "Salzburg", "region": "salzburg-land", "lat": 47.80, "lng": 13.04, "description": "Salzburg ist die Geburtsstadt Mozarts und UNESCO-Weltkulturerbe. Taxi Salzburg deckt die Altstadt, den Flughafen und die Umgebung ab." },
+    { "slug": "innsbruck", "name": "Innsbruck", "region": "tirol", "lat": 47.26, "lng": 11.39, "description": "Innsbruck ist die Hauptstadt Tirols, umgeben von den Alpen. Taxi Innsbruck deckt die Innenstadt, die Skigebiete und den Flughafen ab." },
+    { "slug": "klagenfurt", "name": "Klagenfurt", "region": "kaernten", "lat": 46.62, "lng": 14.31, "description": "Klagenfurt am Wörthersee ist die Landeshauptstadt Kärntens. Taxi Klagenfurt deckt die Stadt, den See und die Umgebung ab." }
+  ]
+}

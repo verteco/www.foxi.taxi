@@ -21,15 +21,15 @@
     { "slug": "podlaskie", "name": "Podlaskie" }
   ],
   "cities": [
-    { "slug": "warszawa", "name": "Warszawa", "region": "mazowieckie", "lat": 52.23, "lng": 21.01 },
-    { "slug": "krakow", "name": "Kraków", "region": "malopolskie", "lat": 50.06, "lng": 19.94 },
-    { "slug": "wroclaw", "name": "Wrocław", "region": "dolnoslaskie", "lat": 51.11, "lng": 17.04 },
-    { "slug": "poznan", "name": "Poznań", "region": "wielkopolskie", "lat": 52.41, "lng": 16.93 },
-    { "slug": "gdansk", "name": "Gdańsk", "region": "pomorskie", "lat": 54.35, "lng": 18.65 },
-    { "slug": "katowice", "name": "Katowice", "region": "slaskie", "lat": 50.26, "lng": 19.02 },
-    { "slug": "lodz", "name": "Łódź", "region": "lodzkie", "lat": 51.76, "lng": 19.46 },
-    { "slug": "rzeszow", "name": "Rzeszów", "region": "podkarpackie", "lat": 50.04, "lng": 22.00 },
-    { "slug": "lublin", "name": "Lublin", "region": "lubelskie", "lat": 51.25, "lng": 22.57 },
-    { "slug": "bialystok", "name": "Białystok", "region": "podlaskie", "lat": 53.13, "lng": 23.16 }
+    { "slug": "warszawa", "name": "Warszawa", "region": "mazowieckie", "lat": 52.23, "lng": 21.01, "description": "Warszawa to stolica Polski i największe miasto kraju nad Wisłą. Taxi Warszawa obejmuje całe miasto, w tym Śródmieście, Mokotów, Pragę i lotnisko Chopina." },
+    { "slug": "krakow", "name": "Kraków", "region": "malopolskie", "lat": 50.06, "lng": 19.94, "description": "Kraków to dawna stolica Polski i perła architektury ze Starym Miastem na liście UNESCO. Taxi Kraków obejmuje miasto, Kazimierz, Nową Hutę i okolice." },
+    { "slug": "wroclaw", "name": "Wrocław", "region": "dolnoslaskie", "lat": 51.11, "lng": 17.04, "description": "Wrocław to miasto stu mostów i stolica Dolnego Śląska. Taxi Wrocław obejmuje całe miasto, w tym Stare Miasto, Ostrów Tumski i okolice." },
+    { "slug": "poznan", "name": "Poznań", "region": "wielkopolskie", "lat": 52.41, "lng": 16.93, "description": "Poznań to jedno z najstarszych miast w Polsce i centrum Wielkopolski. Taxi Poznań obejmuje miasto, targi MTP, Stary Rynek i okolice." },
+    { "slug": "gdansk", "name": "Gdańsk", "region": "pomorskie", "lat": 54.35, "lng": 18.65, "description": "Gdańsk to nadmorskie miasto z bogatą historią hanzeatycką. Taxi Gdańsk obejmuje miasto, Wrzeszcz, Oliwę, lotnisko i Trójmiasto." },
+    { "slug": "katowice", "name": "Katowice", "region": "slaskie", "lat": 50.26, "lng": 19.02, "description": "Katowice to centrum aglomeracji górnośląskiej i dynamicznie rozwijające się miasto. Taxi Katowice obejmuje miasto i okoliczne gminy." },
+    { "slug": "lodz", "name": "Łódź", "region": "lodzkie", "lat": 51.76, "lng": 19.46, "description": "Łódź to trzecie największe miasto Polski, znane z przemysłu filmowego i ulicy Piotrkowskiej. Taxi Łódź obejmuje całe miasto i okolice." },
+    { "slug": "rzeszow", "name": "Rzeszów", "region": "podkarpackie", "lat": 50.04, "lng": 22.00, "description": "Rzeszów to stolica Podkarpacia i dynamicznie rozwijające się miasto południowo-wschodniej Polski. Taxi Rzeszów obejmuje miasto i okolice." },
+    { "slug": "lublin", "name": "Lublin", "region": "lubelskie", "lat": 51.25, "lng": 22.57, "description": "Lublin to największe miasto wschodniej Polski z bogatą historią i życiem akademickim. Taxi Lublin obejmuje miasto, Stare Miasto i okolice." },
+    { "slug": "bialystok", "name": "Białystok", "region": "podlaskie", "lat": 53.13, "lng": 23.16, "description": "Białystok to stolica Podlasia, brama do Puszczy Białowieskiej. Taxi Białystok obejmuje całe miasto i okoliczne gminy." }
   ]
 }

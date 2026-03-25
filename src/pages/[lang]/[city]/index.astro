@@ -212,7 +212,7 @@ const faqItems = [
   {nearbyCities.length > 0 && (
     <section class="nearby-section fade-section">
       <div class="container">
-        <h2>Taxi {typedLang === 'sk' ? 'v okolí' : typedLang === 'cs' ? 'v okolí' : typedLang === 'hu' ? 'a környéken' : typedLang === 'pl' ? 'w okolicy' : typedLang === 'ro' ? 'în zonă' : 'nearby'} {city.name}</h2>
+        <h2>Taxi {typedLang === 'sk' ? 'v okolí' : typedLang === 'cs' ? 'v okolí' : typedLang === 'hu' ? 'a környéken' : typedLang === 'pl' ? 'w okolicy' : typedLang === 'ro' ? 'în zonă' : typedLang === 'de' ? 'in der Nähe von' : 'nearby'} {city.name}</h2>
         <div class="cities-grid" style="max-width:700px;">
           {nearbyCities.map(nc => (
             <a href={`/${typedLang}/${nc.slug}/`} class="city-card">
@@ -268,7 +268,7 @@ const faqItems = [
       </div>
     </div>
     <div class="footer-section">
-      <div class="footer-section-title">{typedLang === 'sk' ? 'Jazyk' : typedLang === 'cs' ? 'Jazyk' : typedLang === 'hu' ? 'Nyelv' : typedLang === 'pl' ? 'Język' : typedLang === 'ro' ? 'Limbă' : 'Language'}</div>
+      <div class="footer-section-title">{typedLang === 'sk' ? 'Jazyk' : typedLang === 'cs' ? 'Jazyk' : typedLang === 'hu' ? 'Nyelv' : typedLang === 'pl' ? 'Język' : typedLang === 'ro' ? 'Limbă' : typedLang === 'de' ? 'Sprache' : 'Language'}</div>
       <div class="footer-links-row">
         <a href="/en/">English</a>
         <a href="/sk/">Slovenčina</a>
@@ -276,11 +276,24 @@ const faqItems = [
         <a href="/hu/">Magyar</a>
         <a href="/pl/">Polski</a>
         <a href="/ro/">Română</a>
+        <a href="/de/">Deutsch</a>
       </div>
     </div>
   </footer>
 
   <script>
+    // Track phone call clicks in GA4
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'phone_call', {
+            event_category: 'conversion',
+            event_label: (link as HTMLAnchorElement).href,
+          });
+        }
+      });
+    });
+
     // Fade-in sections on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

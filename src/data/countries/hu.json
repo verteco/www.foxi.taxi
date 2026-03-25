@@ -18,15 +18,15 @@
     { "slug": "kozep-dunantul", "name": "Közép-Dunántúl" }
   ],
   "cities": [
-    { "slug": "budapest", "name": "Budapest", "region": "budapest-regio", "lat": 47.50, "lng": 19.04 },
-    { "slug": "debrecen", "name": "Debrecen", "region": "eszak-alfold", "lat": 47.53, "lng": 21.63 },
-    { "slug": "szeged", "name": "Szeged", "region": "del-alfold", "lat": 46.25, "lng": 20.15 },
-    { "slug": "miskolc", "name": "Miskolc", "region": "eszak-magyarorszag", "lat": 48.10, "lng": 20.78 },
-    { "slug": "pecs", "name": "Pécs", "region": "del-dunantul", "lat": 46.07, "lng": 18.23 },
-    { "slug": "gyor", "name": "Győr", "region": "nyugat-dunantul", "lat": 47.69, "lng": 17.63 },
-    { "slug": "nyiregyhaza", "name": "Nyíregyháza", "region": "eszak-alfold", "lat": 47.96, "lng": 21.72 },
-    { "slug": "kecskemet", "name": "Kecskemét", "region": "del-alfold", "lat": 46.91, "lng": 19.69 },
-    { "slug": "szekesfehervar", "name": "Székesfehérvár", "region": "kozep-dunantul", "lat": 47.19, "lng": 18.41 },
-    { "slug": "szombathely", "name": "Szombathely", "region": "nyugat-dunantul", "lat": 47.23, "lng": 16.62 }
+    { "slug": "budapest", "name": "Budapest", "region": "budapest-regio", "lat": 47.50, "lng": 19.04, "description": "Budapest Magyarország fővárosa és legnagyobb városa, a Duna két partján terül el. A Taxi Budapest lefedi az egész várost, beleértve a Belvárost, Budát, Pestet és a repülőteret." },
+    { "slug": "debrecen", "name": "Debrecen", "region": "eszak-alfold", "lat": 47.53, "lng": 21.63, "description": "Debrecen Magyarország második legnagyobb városa és az Észak-Alföld központja. A Taxi Debrecen lefedi a teljes várost és a környező településeket." },
+    { "slug": "szeged", "name": "Szeged", "region": "del-alfold", "lat": 46.25, "lng": 20.15, "description": "Szeged a napfény városa, egyetemi város és a Dél-Alföld központja. A Taxi Szeged lefedi a várost, beleértve a belvárost, Újszegedet és környékét." },
+    { "slug": "miskolc", "name": "Miskolc", "region": "eszak-magyarorszag", "lat": 48.10, "lng": 20.78, "description": "Miskolc Észak-Magyarország legnagyobb városa, a Bükk-hegység lábánál. A Taxi Miskolc lefedi a teljes várost és a környező településeket." },
+    { "slug": "pecs", "name": "Pécs", "region": "del-dunantul", "lat": 46.07, "lng": 18.23, "description": "Pécs a Mecsek lábánál fekvő kulturális főváros, gazdag római és oszmán örökséggel. A Taxi Pécs lefedi a várost és környékét." },
+    { "slug": "gyor", "name": "Győr", "region": "nyugat-dunantul", "lat": 47.69, "lng": 17.63, "description": "Győr Nyugat-Magyarország legnagyobb városa, a Duna és a Rába találkozásánál. A Taxi Győr lefedi a teljes várost és az ipari parkokat." },
+    { "slug": "nyiregyhaza", "name": "Nyíregyháza", "region": "eszak-alfold", "lat": 47.96, "lng": 21.72, "description": "Nyíregyháza a Nyírség központja és Szabolcs-Szatmár-Bereg megye székhelye. A Taxi Nyíregyháza lefedi a várost és a Sóstógyógyfürdő környékét." },
+    { "slug": "kecskemet", "name": "Kecskemét", "region": "del-alfold", "lat": 46.91, "lng": 19.69, "description": "Kecskemét a Duna–Tisza köze központja, híres a barackpálinkájáról és szecessziós építészetéről. A Taxi Kecskemét lefedi a teljes várost." },
+    { "slug": "szekesfehervar", "name": "Székesfehérvár", "region": "kozep-dunantul", "lat": 47.19, "lng": 18.41, "description": "Székesfehérvár Magyarország egykori koronázó városa és a Közép-Dunántúl központja. A Taxi Székesfehérvár lefedi a várost és környékét." },
+    { "slug": "szombathely", "name": "Szombathely", "region": "nyugat-dunantul", "lat": 47.23, "lng": 16.62, "description": "Szombathely Magyarország legrégibb városa, római kori emlékekkel. A Taxi Szombathely lefedi a várost és a Vas megyei környéket." }
   ]
 }
