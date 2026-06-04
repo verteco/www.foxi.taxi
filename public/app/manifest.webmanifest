@@ -1,0 +1,16 @@
+{
+  "name": "FOXI TAXI",
+  "short_name": "FOXI",
+  "description": "Tvoja miestna jazda. Férová cena. Taxi v Trebišove a okolí — pevná cena bez surge, platba v hotovosti, miestny dispečer.",
+  "lang": "sk",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#141422",
+  "theme_color": "#5a57a5",
+  "categories": ["travel", "navigation"],
+  "icons": [
+    { "src": "/images/logo-big.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -7,6 +7,12 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>FOXI TAXI — App Prototype</title>
   <link rel="icon" href="/favicon.svg" />
+  <link rel="manifest" href="/app/manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FOXI" />
+  <link rel="apple-touch-icon" href="/images/logo-big.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -92,6 +98,12 @@
         document.body.appendChild(s);
       });
     })();
+    // PWA: installable + offline shell
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/app/sw.js').catch(function () {});
+      });
+    }
   </script>
 </body>
 </html>
