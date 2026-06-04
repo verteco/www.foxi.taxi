@@ -367,7 +367,7 @@
         '  <div class="card chip--pay" style="margin-top:14px;background:var(--surface);display:flex;align-items:center;gap:12px">' +
         '    <div class="row-ico" style="flex:none;background:rgba(243,119,34,.16);color:#f37722">' + FOXI.icon('cash', 20) + '</div>' +
         '    <div style="flex:1"><div class="row-title" style="font-size:14px">Vyberte ' + eur(t.finalFare) + ' v hotovosti</div><div class="row-sub">od ' + D.rider.first + '</div></div>' +
-        '    <button class="btn btn-sm btn-success" id="cash-btn" style="width:auto;padding:0 14px" onclick="this.innerHTML=\'' + FOXI.icon('check', 16).replace(/'/g, '') + ' Vybrané\';this.classList.add(\'btn-block\')">Vybrané</button>' +
+        '    <button class="btn btn-sm btn-success" id="cash-btn" style="width:auto;padding:0 14px" onclick="this.textContent=\'✓ Vybrané\';this.classList.add(\'btn-block\')">Vybrané</button>' +
         '  </div>' +
         // rate rider
         '  <div class="card" style="margin-top:14px;text-align:center">' + FOXI.avatar(D.rider.name, 56) +

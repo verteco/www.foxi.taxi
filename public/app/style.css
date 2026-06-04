@@ -411,6 +411,8 @@ a { color: inherit; text-decoration: none; }
 .muted { color: var(--text-3); }
 .center { text-align: center; }
 .spread { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.card.spread > div:first-child { min-width: 0; }
+.card.spread .veh-price { flex: none; white-space: nowrap; }
 .grow { flex: 1; }
 .stack > * + * { margin-top: var(--s3); }
 .stack-lg > * + * { margin-top: var(--s4); }
