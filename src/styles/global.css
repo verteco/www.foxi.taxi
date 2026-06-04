@@ -189,6 +189,17 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--primary-light);
   transform: translateY(-2px);
 }
+.beta-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  margin-left: 2px;
+}
 
 .phone-display {
   font-size: clamp(1.8rem, 4vw, 2.8rem);

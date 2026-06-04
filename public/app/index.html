@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#5a57a5" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>FOXI TAXI — App Prototype</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="stage">
+    <aside class="demo-rail">
+      <div class="demo-brand">FOXI<span>.TAXI</span> <em>prototyp</em></div>
+      <div class="demo-app-switch">
+        <button class="demo-app-tab active" data-app="rider" onclick="FOXI.go('rider-home')">Zákazník</button>
+        <button class="demo-app-tab" data-app="driver" onclick="FOXI.go('driver-home')">Řidič</button>
+      </div>
+
+      <nav class="demo-nav">
+        <div class="demo-nav-h">Zákazník — jízda</div>
+        <a class="demo-link" data-screen="splash" href="#/splash">Splash / start</a>
+        <a class="demo-link" data-screen="rider-home" href="#/rider-home">Domov / mapa</a>
+        <a class="demo-link" data-screen="search-destination" href="#/search-destination">Kam to bude?</a>
+        <a class="demo-link" data-screen="vehicle-select" href="#/vehicle-select">Výběr vozu</a>
+        <a class="demo-link" data-screen="fare-breakdown" href="#/fare-breakdown">Rozpis ceny</a>
+        <a class="demo-link" data-screen="requesting" href="#/requesting">Hledání řidiče</a>
+        <a class="demo-link" data-screen="driver-matched" href="#/driver-matched">Řidič přiřazen</a>
+        <a class="demo-link" data-screen="rider-arrived" href="#/rider-arrived">Řidič přijel</a>
+        <a class="demo-link" data-screen="on-trip" href="#/on-trip">Průběh jízdy</a>
+        <a class="demo-link" data-screen="trip-complete" href="#/trip-complete">Hodnocení + cena</a>
+        <a class="demo-link" data-screen="receipt" href="#/receipt">Účtenka</a>
+      </nav>
+      <nav class="demo-nav">
+        <div class="demo-nav-h">Zákazník — víc</div>
+        <a class="demo-link" data-screen="rider-activity" href="#/rider-activity">Historie</a>
+        <a class="demo-link" data-screen="account" href="#/account">Účet</a>
+        <a class="demo-link" data-screen="phone-fallback" href="#/phone-fallback">Zavolat dispečera</a>
+        <a class="demo-link" data-screen="language-switch" href="#/language-switch">Jazyk</a>
+      </nav>
+
+      <nav class="demo-nav">
+        <div class="demo-nav-h">Řidič</div>
+        <a class="demo-link" data-screen="driver-home" href="#/driver-home">Cockpit / online</a>
+        <a class="demo-link" data-screen="driver-ride-offer" href="#/driver-ride-offer">Nabídka jízdy</a>
+        <a class="demo-link" data-screen="driver-nav-pickup" href="#/driver-nav-pickup">K vyzvednutí</a>
+        <a class="demo-link" data-screen="driver-on-trip" href="#/driver-on-trip">Jízda</a>
+        <a class="demo-link" data-screen="driver-trip-summary" href="#/driver-trip-summary">Souhrn + výběr</a>
+        <a class="demo-link" data-screen="driver-earnings" href="#/driver-earnings">Výdělky</a>
+        <a class="demo-link" data-screen="driver-account-health" href="#/driver-account-health">Stav účtu</a>
+        <a class="demo-link" data-screen="driver-profile" href="#/driver-profile">Profil</a>
+      </nav>
+
+      <div class="demo-hint">Klikací prototyp · bez backendu · data Trebišov · mapa MapLibre</div>
+    </aside>
+
+    <main class="stage-phone">
+      <div class="frame" data-app="rider" data-theme="light">
+        <div class="frame-statusbar">
+          <span class="sb-time">9:41</span>
+          <span class="sb-icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1" opacity=".4"/></svg>
+            <svg width="22" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="20" height="10" rx="3" stroke="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/><rect x="22" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="frame-body">
+          <div id="map-layer"></div>
+          <div id="app-viewport"></div>
+        </div>
+        <div class="frame-homebar"><span></span></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+  <script src="./map.js"></script>
+  <script>
+    (function () {
+      var modules = ['screens/shared.js', 'screens/rider.js', 'screens/rider-extra.js', 'screens/driver.js', 'screens/driver-extra.js'];
+      var loaded = 0;
+      function done() { if (++loaded === modules.length) FOXI.start(); }
+      modules.forEach(function (src) {
+        var s = document.createElement('script');
+        s.src = './' + src; s.onload = done; s.onerror = done;
+        document.body.appendChild(s);
+      });
+    })();
+  </script>
+</body>
+</html>
