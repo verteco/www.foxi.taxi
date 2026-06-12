@@ -36,6 +36,12 @@ export const translations = {
       step2: { title: 'We Dispatch', desc: 'The nearest available driver is assigned to your pickup.' },
       step3: { title: 'Enjoy the Ride', desc: 'Your driver arrives and takes you where you need to go.' },
     },
+    fleet: {
+      title: "You'll spot us on the street",
+      subtitle: 'Look for the fox — the FOXI TAXI cars are hard to miss.',
+      altWhite: 'FOXI TAXI car — white Kia with the Foxi fox wrap',
+      altBlue: 'FOXI TAXI car — blue Kia with the Foxi fox wrap',
+    },
     cta: {
       title: 'Need a ride?',
       subtitle: 'Tap the button to call your local FOXI TAXI dispatcher.',
@@ -108,6 +114,12 @@ export const translations = {
       step1: { title: 'Zavolajte nám', desc: 'Vytočte číslo alebo kliknite na tlačidlo — trvá to 10 sekúnd.' },
       step2: { title: 'Vyšleme vodiča', desc: 'Najbližší dostupný vodič je priradený k vášmu vyzdvihnutiu.' },
       step3: { title: 'Užite si jazdu', desc: 'Vodič príde a odvezie vás kam potrebujete.' },
+    },
+    fleet: {
+      title: 'Spoznáte nás na ulici',
+      subtitle: 'Hľadajte líšku — autá FOXI TAXI si nepomýlite.',
+      altWhite: 'Auto FOXI TAXI — biela Kia s líškou Foxi',
+      altBlue: 'Auto FOXI TAXI — modrá Kia s líškou Foxi',
     },
     cta: {
       title: 'Potrebujete odvoz?',
@@ -182,6 +194,12 @@ export const translations = {
       step2: { title: 'Vyšleme řidiče', desc: 'Nejbližší dostupný řidič je přiřazen k vašemu vyzvednutí.' },
       step3: { title: 'Užijte si jízdu', desc: 'Řidič dorazí a odveze vás kam potřebujete.' },
     },
+    fleet: {
+      title: 'Poznáte nás na ulici',
+      subtitle: 'Hledejte lišku — auta FOXI TAXI si nespletete.',
+      altWhite: 'Auto FOXI TAXI — bílá Kia s liškou Foxi',
+      altBlue: 'Auto FOXI TAXI — modrá Kia s liškou Foxi',
+    },
     cta: {
       title: 'Potřebujete odvoz?',
       subtitle: 'Klikněte a zavolejte vašemu lokálnímu FOXI TAXI dispečerovi.',
@@ -254,6 +272,12 @@ export const translations = {
       step1: { title: 'Rufen Sie uns an', desc: 'Wählen Sie die Nummer oder tippen Sie auf den Button — 10 Sekunden.' },
       step2: { title: 'Wir disponieren', desc: 'Der nächste verfügbare Fahrer wird Ihrer Abholung zugewiesen.' },
       step3: { title: 'Genießen Sie die Fahrt', desc: 'Ihr Fahrer kommt und bringt Sie ans Ziel.' },
+    },
+    fleet: {
+      title: 'Sie erkennen uns auf der Straße',
+      subtitle: 'Achten Sie auf den Fuchs — die FOXI TAXI Autos sind unverkennbar.',
+      altWhite: 'FOXI TAXI Auto — weißer Kia mit Foxi-Fuchs',
+      altBlue: 'FOXI TAXI Auto — blauer Kia mit Foxi-Fuchs',
     },
     cta: {
       title: 'Brauchen Sie eine Fahrt?',
@@ -328,6 +352,12 @@ export const translations = {
       step2: { title: 'Diszponálunk', desc: 'A legközelebbi elérhető sofőr az Ön felvételéhez van rendelve.' },
       step3: { title: 'Élvezze az utat', desc: 'Sofőrje megérkezik és elviszi, ahová szeretne.' },
     },
+    fleet: {
+      title: 'Az utcán is felismer minket',
+      subtitle: 'Keresse a rókát — a FOXI TAXI autóit nem lehet eltéveszteni.',
+      altWhite: 'FOXI TAXI autó — fehér Kia a Foxi rókával',
+      altBlue: 'FOXI TAXI autó — kék Kia a Foxi rókával',
+    },
     cta: {
       title: 'Szüksége van fuvarra?',
       subtitle: 'Kattintson a gombra a helyi FOXI TAXI diszpécser hívásához.',
@@ -401,6 +431,12 @@ export const translations = {
       step2: { title: 'Wysyłamy kierowcę', desc: 'Najbliższy dostępny kierowca zostaje przypisany do odbioru.' },
       step3: { title: 'Ciesz się jazdą', desc: 'Kierowca przyjeżdża i zabiera Cię, dokąd chcesz.' },
     },
+    fleet: {
+      title: 'Rozpoznasz nas na ulicy',
+      subtitle: 'Szukaj liska — aut FOXI TAXI nie da się pomylić.',
+      altWhite: 'Auto FOXI TAXI — biała Kia z liskiem Foxi',
+      altBlue: 'Auto FOXI TAXI — niebieska Kia z liskiem Foxi',
+    },
     cta: {
       title: 'Potrzebujesz przejazdu?',
       subtitle: 'Kliknij przycisk, aby zadzwonić do lokalnego dyspozytora FOXI TAXI.',
@@ -473,6 +509,12 @@ export const translations = {
       step1: { title: 'Sună-ne', desc: 'Formează numărul sau apasă butonul — durează 10 secunde.' },
       step2: { title: 'Trimitem un șofer', desc: 'Cel mai apropiat șofer disponibil este alocat pentru preluare.' },
       step3: { title: 'Bucură-te de cursă', desc: 'Șoferul sosește și te duce unde ai nevoie.' },
+    },
+    fleet: {
+      title: 'Ne recunoașteți pe stradă',
+      subtitle: 'Căutați vulpea — mașinile FOXI TAXI nu trec neobservate.',
+      altWhite: 'Mașină FOXI TAXI — Kia albă cu vulpea Foxi',
+      altBlue: 'Mașină FOXI TAXI — Kia albastră cu vulpea Foxi',
     },
     cta: {
       title: 'Ai nevoie de o cursă?',

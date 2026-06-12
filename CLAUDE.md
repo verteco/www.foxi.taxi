@@ -14,13 +14,17 @@
 - **Domain**: foxi.taxi (registered via Openprovider, NS on Cloudflare)
 - **Repo**: https://github.com/verteco/www.foxi.taxi
 
-## Brand Identity (shared with foxi.food / foxifood.com)
+## Brand Identity (from the Kia car wrap + foxifood.com)
 
-- **Primary**: `#5a57a5` (purple)
-- **Accent**: `#f37722` (orange)
+Colors sampled from the wrap design (`Polep_foxi_kia`):
+- **Ink**: `#0f0d0e` (wordmark black), **Purple**: `#4d4796` ("taxi" wordmark, mini-taxi)
+- **Orange**: `#f37722` (CTAs, same as foxifood.com), deep `#cd6527` (wordmark tail)
+- **Azure**: `#2198d6` (blue wrap car — hero background)
+- **Taxi yellow**: `#f6bd2c` (checker strip, NONSTOP chip)
+- **Theme**: light (white body, `#f5f5f7` alt sections) like foxifood.com; dark footer
 - **Font**: Outfit (Google Fonts)
-- **Logo**: Shared FOXI logo assets in `/public/images/`
-- **Mascot**: Foxi fox character (`foxi-mascot.png`)
+- **Wordmark**: "Foxi." + "taxi" stacked — `wordmark-dark.png` (light bg) / `wordmark-light.png` (dark bg)
+- **Mascot**: fox chauffeur driving a purple taxi (`fox-driver.png`); fleet photos `car-blue.jpg`, `car-white.jpg`
 
 ## Commands
 

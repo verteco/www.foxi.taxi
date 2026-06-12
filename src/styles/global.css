@@ -1,28 +1,55 @@
 /* ============================================================
-   FOXI TAXI – Brand-aligned with foxi.food / foxifood.com
-   Primary: #5a57a5 (purple)  Accent: #f37722 (orange)
+   FOXI TAXI — brand from the Kia car wrap (Polep_foxi_kia)
+   + light design language shared with foxifood.com
+   Ink #0f0d0e · Purple #4d4796 · Orange #f37722
+   Azure #2198d6 (blue car) · Taxi yellow #f6bd2c
    Font: Outfit (same as foxifood.com)
    ============================================================ */
 /* Font loaded via <link> in Layout.astro for better performance */
 
 :root {
-  --primary: #5a57a5;
-  --primary-dark: #463794;
-  --primary-light: rgba(90, 87, 165, 0.12);
+  /* wrap palette */
+  --ink: #0f0d0e;
+  --heading: #221f3a;
+  --purple: #4d4796;
+  --purple-deep: #473f93;
+  --purple-light: rgba(77, 71, 150, 0.1);
+  --orange: #f37722;
+  --orange-dark: #d4631a;
+  --orange-deep: #cd6527;
+  --orange-light: rgba(243, 119, 34, 0.1);
+  --blue: #2198d6;
+  --blue-deep: #1275b1;
+  --blue-darker: #0f6494;
+  --yellow: #f6bd2c;
+
+  /* legacy aliases (kept so older rules/pages keep working) */
+  --primary: #4d4796;
+  --primary-dark: #473f93;
+  --primary-light: rgba(77, 71, 150, 0.1);
   --accent: #f37722;
   --accent-dark: #d4631a;
-  --accent-light: rgba(243, 119, 34, 0.12);
-  --dark: #1e1e2f;
-  --darker: #141422;
+  --accent-light: rgba(243, 119, 34, 0.1);
+
+  /* surfaces & text — light theme like foxifood.com */
+  --dark: #1e1c33;     /* footer / dropdown surface */
+  --darker: #14121f;   /* footer background */
   --white: #ffffff;
+  --gray-50: #fafafa;
   --gray-100: #f5f5f7;
   --gray-200: #e5e5ea;
   --gray-300: #c7c7cc;
   --gray-400: #9a9aa8;
   --gray-500: #6b6b80;
   --text: #3c3c3c;
+  --muted: #6b6b80;
   --font: 'Outfit', system-ui, -apple-system, sans-serif;
   --radius: 12px;
+  --shadow-card: 0 2px 14px rgba(34, 31, 58, 0.06);
+  --shadow-card-hover: 0 10px 30px rgba(34, 31, 58, 0.12);
+
+  /* taxi checkerboard (yellow/ink, like the mini-taxi on the wrap) */
+  --checker: repeating-conic-gradient(var(--ink) 0% 25%, var(--yellow) 0% 50%);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,8 +57,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   font-family: var(--font);
-  color: var(--white);
-  background: var(--darker);
+  color: var(--text);
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
 }
@@ -46,10 +73,10 @@ img { max-width: 100%; height: auto; display: block; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 14px 24px;
-  background: rgba(20, 20, 34, 0.85);
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--gray-200);
 }
 
 .navbar-inner {
@@ -61,21 +88,36 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .logo-link { display: flex; align-items: center; }
-.logo-text { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
-.logo-text .taxi { color: var(--accent); }
+
+/* wordmark: "Foxi." ink with orange dot + "taxi" purple */
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.logo-text .logo-dot { color: var(--orange); }
+.logo-text .logo-taxi { color: var(--purple); }
 
 .nav-phone {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent);
+  background: var(--orange);
+  color: var(--white);
   font-weight: 700;
   font-size: 15px;
-  transition: color 0.2s;
+  padding: 9px 20px;
+  border-radius: 999px;
+  transition: all 0.2s;
 }
-.nav-phone:hover { color: var(--white); }
+.nav-phone:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(243, 119, 34, 0.35);
+}
 
-/* ---- HERO ---- */
+/* ---- HERO — azure like the blue wrap car ---- */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -83,38 +125,50 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 140px 24px 80px;
+  padding: 140px 24px 110px;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(90,87,165,0.2) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 80%, rgba(243,119,34,0.1) 0%, transparent 50%),
-    var(--darker);
+    radial-gradient(ellipse at 22% 12%, rgba(255, 255, 255, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(15, 100, 148, 0.55) 0%, transparent 55%),
+    linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 62%, var(--blue-darker) 100%);
   position: relative;
+  overflow: hidden;
+  color: var(--white);
+}
+
+/* taxi checker strip along the bottom edge, like the wrap */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 32px;
+  background: var(--checker) 0 0 / 32px 32px;
+  pointer-events: none;
 }
 
 .hero-mascot {
   position: absolute;
-  right: 5%;
-  bottom: 10%;
-  width: 200px;
-  opacity: 0.15;
+  right: 4%;
+  bottom: 48px;
+  width: 230px;
   pointer-events: none;
+  filter: drop-shadow(0 14px 24px rgba(10, 60, 90, 0.35));
 }
 
 @media (min-width: 1024px) {
-  .hero-mascot { width: 280px; opacity: 0.2; }
+  .hero-mascot { width: 330px; right: 6%; }
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--primary-light);
-  border: 1px solid rgba(90,87,165,0.3);
+  background: rgba(13, 74, 110, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 100px;
   padding: 8px 20px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--white);
   margin-bottom: 32px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -129,19 +183,17 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--white);
 }
 
+/* taxi-yellow display accent, like the TAXI roof sign */
 .hero h1 .accent {
-  background: linear-gradient(135deg, var(--accent), #ff9a56);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--yellow);
 }
 
 .hero p {
   font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-  color: var(--gray-300);
+  color: rgba(255, 255, 255, 0.92);
   max-width: 520px;
   margin-bottom: 44px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .hero-buttons {
@@ -167,26 +219,25 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--orange);
   color: var(--white);
-  border-color: var(--accent);
+  border-color: var(--orange);
 }
 .btn-primary:hover {
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background: var(--orange-dark);
+  border-color: var(--orange-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(243,119,34,0.3);
+  box-shadow: 0 8px 28px rgba(15, 13, 14, 0.25);
 }
 
 .btn-outline {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.12);
   color: var(--white);
-  border-color: rgba(255,255,255,0.2);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 .btn-outline:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: var(--primary-light);
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
 }
 .beta-tag {
@@ -196,22 +247,37 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.06em;
   padding: 2px 7px;
   border-radius: 999px;
-  background: var(--accent);
-  color: var(--white);
+  background: var(--yellow);
+  color: var(--ink);
   margin-left: 2px;
+}
+
+/* NONSTOP roof-sign chip (yellow + ink border, like the mascot's taxi) */
+.nonstop-chip {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 3px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 40px;
 }
 
 .phone-display {
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
-  color: var(--accent);
-  margin-top: 36px;
+  color: var(--white);
+  margin-top: 10px;
   letter-spacing: 0.02em;
 }
 
 .region-label {
   font-size: 14px;
-  color: var(--gray-400);
+  color: rgba(255, 255, 255, 0.92);
   margin-top: 6px;
   font-weight: 400;
 }
@@ -221,16 +287,16 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .phone-secondary a {
-  color: var(--gray-300);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 16px;
   font-weight: 500;
   transition: color 0.2s;
 }
-.phone-secondary a:hover { color: var(--accent); }
+.phone-secondary a:hover { color: var(--yellow); }
 
 .operator-label {
   font-size: 13px;
-  color: var(--gray-500);
+  color: rgba(255, 255, 255, 0.9);
   margin-top: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -256,12 +322,13 @@ img { max-width: 100%; height: auto; display: block; }
 .hero h1 { animation: heroFadeIn 0.6s ease-out 0.25s both; }
 .hero > p { animation: heroFadeIn 0.6s ease-out 0.4s both; }
 .hero-buttons { animation: heroFadeIn 0.6s ease-out 0.55s both; }
+.nonstop-chip { animation: heroFadeIn 0.6s ease-out 0.6s both; }
 .phone-display { animation: heroFadeIn 0.6s ease-out 0.65s both; }
 
 /* ---- PULSE GLOW ---- */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(243, 119, 34, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(243, 119, 34, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.45); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
 }
 .pulse-glow {
   animation: pulseGlow 2.5s ease-in-out infinite;
@@ -273,7 +340,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---- HOW IT WORKS ---- */
 .how-it-works {
   padding: 100px 24px;
-  background: var(--darker);
+  background: var(--white);
 }
 
 .how-it-works h2 {
@@ -281,7 +348,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 800;
   margin-bottom: 56px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .steps-grid {
@@ -300,22 +367,23 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 260px;
   text-align: center;
   padding: 32px 20px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
   border-radius: 18px;
   transition: all 0.3s;
 }
 .step-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(90,87,165,0.4);
+  background: var(--white);
+  border-color: rgba(77, 71, 150, 0.35);
   transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .step-number {
   width: 48px;
   height: 48px;
   margin: 0 auto 16px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--purple), var(--purple-deep));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -329,20 +397,20 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .step-card p {
-  color: var(--gray-300);
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .step-connector {
   display: flex;
   align-items: center;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* ---- FLOATING MOBILE CTA ---- */
@@ -354,12 +422,12 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 90;
   width: 56px;
   height: 56px;
-  background: var(--accent);
+  background: var(--orange);
   border-radius: 50%;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(243,119,34,0.4);
+  box-shadow: 0 4px 20px rgba(243, 119, 34, 0.4);
   transition: transform 0.3s, opacity 0.3s;
   opacity: 0;
   transform: scale(0.8);
@@ -379,30 +447,18 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 0;
 }
 
-.footer-brand-name {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+/* wordmark image from the wrap (orange Foxi. + white taxi) */
+.footer-wordmark {
   display: block;
-  margin-bottom: 6px;
+  width: 132px;
+  height: auto;
+  margin: 0 auto 14px;
 }
-.footer-brand-name .taxi { color: var(--accent); }
-
-.footer-powered-by {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--gray-500);
-  transition: color 0.2s;
-  letter-spacing: 0.02em;
-}
-.footer-powered-by:hover { color: var(--gray-300); }
-.footer-powered-by strong { color: var(--gray-400); font-weight: 700; }
 
 /* ---- FEATURES ---- */
 .features {
   padding: 100px 24px;
-  background: var(--dark);
+  background: var(--gray-100);
 }
 
 .features h2 {
@@ -410,7 +466,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 800;
   margin-bottom: 56px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .features-grid {
@@ -422,23 +478,23 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .feature-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: 18px;
   padding: 32px 24px;
   transition: all 0.3s;
+  box-shadow: var(--shadow-card);
 }
 .feature-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(243,119,34,0.3);
+  border-color: rgba(243, 119, 34, 0.4);
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(243,119,34,0.08);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .feature-icon {
   width: 52px;
   height: 52px;
-  background: var(--accent-light);
+  background: var(--orange-light);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -451,23 +507,64 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .feature-card p {
-  color: var(--gray-300);
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-/* ---- CTA ---- */
+/* ---- FLEET — the wrapped cars from the street ---- */
+.fleet {
+  padding: 100px 24px;
+  background: var(--white);
+}
+
+.fleet h2 {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--heading);
+}
+
+.fleet-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 520px;
+  margin: 0 auto 48px;
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.fleet-card img {
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  background: #ececec;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.fleet-card:hover img {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---- CTA — orange gradient like foxifood.com ---- */
 .cta {
   padding: 100px 24px;
   text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 100%, rgba(243,119,34,0.08) 0%, transparent 50%),
-    var(--darker);
+  background: linear-gradient(135deg, var(--orange-dark) 0%, #a04a13 55%, #8d4514 100%);
+  color: var(--white);
 }
 
 .cta h2 {
@@ -478,37 +575,45 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .cta p {
-  color: var(--gray-300);
+  color: var(--white);
   font-size: 17px;
   max-width: 480px;
   margin: 0 auto 36px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .cta-phone {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--accent);
-  color: var(--white);
+  background: var(--white);
+  color: var(--orange-deep);
   padding: 18px 44px;
   border-radius: 14px;
   font-size: 22px;
   font-weight: 800;
   text-decoration: none;
   transition: all 0.2s;
+  box-shadow: 0 8px 30px rgba(80, 35, 5, 0.3);
 }
 .cta-phone:hover {
-  background: var(--accent-dark);
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(243,119,34,0.3);
+  box-shadow: 0 14px 40px rgba(80, 35, 5, 0.4);
 }
+
+/* city grids reuse .cta — keep them on a light surface instead */
+.cta.cta-cities {
+  background: var(--gray-100);
+  color: var(--text);
+}
+.cta.cta-cities h2 { color: var(--heading); }
 
 /* ---- FOOTER ---- */
 footer {
-  padding: 40px 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 24px 40px;
+  border-top: 4px solid var(--orange);
   background: var(--darker);
+  color: var(--gray-400);
 }
 
 .footer-inner {
@@ -528,7 +633,7 @@ footer {
   width: 100%;
   padding-top: 24px;
   margin-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .footer-section-title {
@@ -556,41 +661,13 @@ footer {
   transition: all 0.2s;
 }
 .footer-links-row a:hover {
-  color: var(--accent);
-  background: var(--accent-light);
+  color: var(--orange);
+  background: rgba(243, 119, 34, 0.12);
 }
 .footer-links-row a.active {
-  color: var(--accent);
-  background: var(--accent-light);
+  color: var(--orange);
+  background: rgba(243, 119, 34, 0.12);
   font-weight: 600;
-}
-
-.footer-region {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: var(--gray-400);
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-.footer-region-phone {
-  color: var(--accent) !important;
-  font-weight: 600;
-  padding: 0 !important;
-}
-.footer-region-phone:hover {
-  color: var(--white) !important;
-  background: none !important;
-}
-
-.footer-coming-soon {
-  font-size: 12px;
-  color: var(--gray-500);
-  font-style: italic;
 }
 
 /* Collapsible footer selectors */
@@ -598,7 +675,7 @@ footer {
   width: 100%;
   padding-top: 20px;
   margin-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.08);
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
@@ -616,8 +693,8 @@ footer {
   justify-content: space-between;
   width: 100%;
   padding: 10px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 10px;
   color: var(--gray-300);
   font-size: 14px;
@@ -627,8 +704,8 @@ footer {
   transition: all 0.2s;
 }
 .footer-dropdown-toggle:hover {
-  border-color: rgba(243,119,34,0.3);
-  background: rgba(255,255,255,0.06);
+  border-color: rgba(243,119,34,0.4);
+  background: rgba(255,255,255,0.08);
 }
 
 .footer-dropdown-toggle .toggle-label {
@@ -660,7 +737,7 @@ footer {
   left: 0;
   right: 0;
   background: var(--dark);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 12px;
   padding: 8px;
   box-shadow: 0 -8px 30px rgba(0,0,0,0.4);
@@ -687,21 +764,21 @@ footer {
 }
 
 .footer-dropdown-panel a:hover {
-  background: var(--accent-light);
-  color: var(--accent);
+  background: rgba(243, 119, 34, 0.14);
+  color: var(--orange);
 }
 
 .footer-dropdown-panel a.active,
 .footer-dropdown-panel span.active {
-  background: var(--accent-light);
-  color: var(--accent);
+  background: rgba(243, 119, 34, 0.14);
+  color: var(--orange);
   font-weight: 600;
 }
 
 .footer-dropdown-panel .dd-phone {
   margin-left: auto;
   font-size: 12px;
-  color: var(--accent);
+  color: var(--orange);
   font-weight: 600;
 }
 
@@ -715,14 +792,14 @@ footer {
 /* ---- CITY ABOUT SECTION ---- */
 .city-about {
   padding: 80px 24px;
-  background: var(--dark);
+  background: var(--white);
 }
 
 .city-about h2 {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 800;
   margin-bottom: 24px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .city-about h3 {
@@ -730,30 +807,30 @@ footer {
   font-weight: 700;
   margin-top: 40px;
   margin-bottom: 16px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .about-content p,
 .city-about > .container > p {
-  color: var(--gray-300);
+  color: var(--text);
   font-size: 16px;
   line-height: 1.8;
   margin-bottom: 16px;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 800px;
 }
 
 /* ---- FAQ SECTION ---- */
 .faq-section {
   padding: 80px 24px;
-  background: var(--darker);
+  background: var(--gray-100);
 }
 
 .faq-section h2 {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 800;
   margin-bottom: 32px;
-  color: var(--white);
+  color: var(--heading);
   text-align: center;
 }
 
@@ -766,23 +843,23 @@ footer {
 }
 
 .faq-item {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: 14px;
   overflow: hidden;
   transition: all 0.3s;
+  box-shadow: var(--shadow-card);
 }
 
 .faq-item[open] {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(243,119,34,0.3);
+  border-color: rgba(243,119,34,0.4);
 }
 
 .faq-item summary {
   padding: 18px 24px;
   font-size: 16px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--heading);
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -799,7 +876,7 @@ footer {
   content: '+';
   font-size: 22px;
   font-weight: 300;
-  color: var(--accent);
+  color: var(--orange);
   flex-shrink: 0;
   transition: transform 0.2s;
 }
@@ -810,23 +887,23 @@ footer {
 
 .faq-item p {
   padding: 0 24px 18px;
-  color: var(--gray-300);
+  color: var(--muted);
   font-size: 15px;
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ---- NEARBY CITIES ---- */
 .nearby-section {
   padding: 60px 24px;
-  background: var(--dark);
+  background: var(--white);
 }
 .nearby-section h2 {
   text-align: center;
   font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 800;
   margin-bottom: 24px;
-  color: var(--white);
+  color: var(--heading);
 }
 
 /* Cities grid (for city pages) */
@@ -845,31 +922,32 @@ footer {
   align-items: center;
   gap: 4px;
   padding: 16px 12px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: 12px;
   transition: all 0.2s;
   text-decoration: none;
+  box-shadow: var(--shadow-card);
 }
 .city-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(243,119,34,0.3);
+  border-color: rgba(243,119,34,0.5);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
 }
 .city-card.active {
-  border-color: var(--accent);
-  background: var(--accent-light);
+  border-color: var(--orange);
+  background: #fdeee2;
 }
 
 .city-name {
   font-size: 15px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--heading);
 }
 
 .city-phone {
   font-size: 13px;
-  color: var(--accent);
+  color: var(--orange-deep);
   font-weight: 600;
 }
 
@@ -881,16 +959,22 @@ footer {
 
 /* ---- MOBILE ---- */
 @media (max-width: 640px) {
-  .hero { padding: 120px 20px 60px; }
+  .hero { padding: 110px 20px 60px; }
   .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
   .btn { justify-content: center; width: 100%; }
-  .hero-mascot { display: none; }
+  .hero-mascot {
+    position: static;
+    width: 170px;
+    margin: 28px auto 14px;
+  }
   .footer-inner { flex-direction: column; text-align: center; }
+  .nav-phone { padding: 9px 14px; }
   .nav-phone span { display: none; }
   .floating-cta { display: flex; }
   .step-connector { display: none; }
   .steps-grid { flex-direction: column; gap: 16px; }
   .step-card { max-width: 100%; }
+  .hero::after { height: 24px; background-size: 24px 24px; }
 }
 
 @media (min-width: 641px) and (max-width: 900px) {

@@ -20,10 +20,10 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 <nav class="navbar">
   <div class="navbar-inner">
     <a href={`/${lang === 'en' ? '' : lang + '/'}`} class="logo-link">
-      <span class="logo-text">FOXI<span class="taxi">.TAXI</span></span>
+      <span class="logo-text">Foxi<span class="logo-dot">.</span><span class="logo-taxi">taxi</span></span>
     </a>
-    <a href={`tel:${region.phone}`} class="nav-phone" id="nav-phone-link">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <a href={`tel:${region.phone}`} class="nav-phone" id="nav-phone-link" aria-label={`${i('hero.callNow')} ${region.phoneDisplay}`}>
+      <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span id="nav-phone-number">{region.phoneDisplay}</span>
     </a>
   </div>
@@ -31,7 +31,6 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 
 <!-- Hero -->
 <section class="hero">
-  <img src="/images/foxi-mascot-opt.jpg" alt="" class="hero-mascot" aria-hidden="true" loading="lazy" width="266" height="400" />
   <div class="hero-badge">
     <span id="hero-flag">&#127757;</span>
     <span id="hero-region">{lang === 'sk' ? 'Detekujem polohu...' : lang === 'cs' ? 'Detekuji polohu...' : lang === 'hu' ? 'Helymeghatározás...' : lang === 'pl' ? 'Wykrywanie lokalizacji...' : lang === 'ro' ? 'Detectare locație...' : lang === 'de' ? 'Standort wird ermittelt...' : 'Detecting location...'}</span>
@@ -54,10 +53,12 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
     </a>
     */}
   </div>
+  <div class="nonstop-chip">Nonstop 24/7</div>
   <div class="phone-display" id="phone-display">{region.phoneDisplay}</div>
   <div class="phone-secondary" id="phone-secondary"></div>
   <div class="region-label" id="region-label">{region.country}</div>
   <div class="operator-label" id="operator-label"></div>
+  <img src="/images/fox-driver.png" alt="" class="hero-mascot" aria-hidden="true" width="330" height="341" />
 </section>
 
 <!-- How It Works -->
@@ -119,6 +120,22 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
   </div>
 </section>
 
+<!-- Fleet — the wrapped cars -->
+<section class="fleet fade-section">
+  <div class="container">
+    <h2>{i('fleet.title')}</h2>
+    <p class="fleet-sub">{i('fleet.subtitle')}</p>
+    <div class="fleet-grid">
+      <div class="fleet-card">
+        <img src="/images/car-blue.jpg" alt={i('fleet.altBlue')} loading="lazy" width="1400" height="861" />
+      </div>
+      <div class="fleet-card">
+        <img src="/images/car-white.jpg" alt={i('fleet.altWhite')} loading="lazy" width="1400" height="865" />
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta fade-section">
   <h2>{i('cta.title')}</h2>
@@ -137,7 +154,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 <!-- Footer -->
 <footer>
   <div class="footer-brand">
-    <span class="footer-brand-name">FOXI<span class="taxi">.TAXI</span></span>
+    <img src="/images/wordmark-light.png" alt="Foxi.taxi" class="footer-wordmark" width="132" height="90" loading="lazy" />
     <div class="footer-tagline">{i('footer.tagline')}</div>
   </div>
   <div class="footer-inner">
@@ -184,7 +201,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
             {c.isActive ? (
               <span class="dd-phone">{c.phoneDisplay}</span>
             ) : (
-              <span class="dd-soon">Coming soon</span>
+              <span class="dd-soon">{i('cta.comingSoon')}</span>
             )}
           </a>
         ))}
@@ -243,14 +260,14 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 <script define:vars={{ regionsJson, lang }}>
   const REGIONS = JSON.parse(regionsJson);
 
-  // Language → country fallback mapping
-  const LANG_FALLBACK: Record<string, string> = {
+  // Language → country fallback mapping (plain JS — define:vars scripts are not transpiled)
+  const LANG_FALLBACK = {
     sk: 'SK', cs: 'CZ', hu: 'HU', pl: 'PL', ro: 'RO', de: 'AT', en: 'SK',
   };
 
   let resolved = false;
 
-  function applyRegion(region: any) {
+  function applyRegion(region) {
     if (resolved) return;
     resolved = true;
 
@@ -265,7 +282,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
       el.textContent = region.display;
     });
     document.querySelectorAll('#cta-call, #cta-phone, #nav-phone-link').forEach(el => {
-      (el as HTMLAnchorElement).href = `tel:${region.phone}`;
+      el.href = `tel:${region.phone}`;
     });
 
     // Region badge
@@ -280,7 +297,7 @@ const regionsJson = JSON.stringify(getRegionsForGeo());
 
     // Secondary phone
     if (sec && region.phoneSecondaryDisplay) {
-      sec.innerHTML = `<a href="tel:${region.phoneSecondary}" style="color:var(--gray-300);font-size:16px">${region.phoneSecondaryDisplay}</a>`;
+      sec.innerHTML = `<a href="tel:${region.phoneSecondary}">${region.phoneSecondaryDisplay}</a>`;
     }
   }
 
