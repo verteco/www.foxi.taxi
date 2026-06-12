@@ -179,12 +179,11 @@ h1, h2 { font-family: var(--font-display); }
   .hero {
     align-items: flex-start;
     text-align: left;
-    padding-left: max(48px, calc(50% - 580px));
-    padding-right: 24px;
+    padding: 112px 24px 72px max(48px, calc(50% - 580px));
   }
   .hero h1 { max-width: 640px; }
   .hero-buttons { justify-content: flex-start; }
-  .hero-mascot { width: clamp(300px, 30vw, 420px); right: 5%; }
+  .hero-mascot { width: clamp(300px, 28vw, 400px); right: 5%; bottom: 56px; }
 }
 
 .hero h1 {
@@ -205,7 +204,7 @@ h1, h2 { font-family: var(--font-display); }
   font-size: clamp(1.05rem, 2.5vw, 1.25rem);
   color: rgba(255, 255, 255, 0.92);
   max-width: 520px;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
   font-weight: 400;
 }
 
@@ -278,7 +277,7 @@ h1, h2 { font-family: var(--font-display); }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-top: 40px;
+  margin-top: 28px;
 }
 
 /* phone number as a license plate — white, ink border, blue EU band */
@@ -1071,15 +1070,21 @@ footer::before {
   font-style: italic;
 }
 
-/* ---- MOBILE ---- */
+/* ---- MOBILE — keep the hero airy: title, CTA, plate, fox ---- */
 @media (max-width: 640px) {
-  .hero { padding: 110px 20px 60px; }
+  .hero { padding: 96px 20px 44px; }
+  .hero h1 { font-size: clamp(2.1rem, 9.5vw, 2.8rem); }
   .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
   .btn { justify-content: center; width: 100%; }
+  .nonstop-chip { display: none; }
+  .phone-secondary,
+  .operator-label { display: none; }
+  .phone-plate { margin-top: 26px; }
+  .phone-plate .plate-number { font-size: 1.55rem; padding: 5px 18px; }
   .hero-mascot {
     position: static;
-    width: 180px;
-    margin: 30px auto 10px;
+    width: 150px;
+    margin: 22px auto 0;
   }
   .footer-inner { flex-direction: column; text-align: center; }
   .nav-phone { padding: 9px 14px; }
