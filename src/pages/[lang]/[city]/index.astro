@@ -51,6 +51,7 @@ const faqItems = [
   <nav class="navbar">
     <div class="navbar-inner">
       <a href={`/${typedLang}/`} class="logo-link">
+        <img src="/images/nav-fox.png" alt="" class="logo-fox" width="32" height="32" />
         <span class="logo-text">Foxi<span class="logo-dot">.</span><span class="logo-taxi">taxi</span></span>
       </a>
       <a href={`tel:${phone}`} class="nav-phone" aria-label={`${i('hero.callNow')} ${phoneDisplay}`}>
@@ -62,10 +63,6 @@ const faqItems = [
 
   <!-- Hero — city-specific -->
   <section class="hero">
-    <div class="hero-badge">
-      <span>{city.flag}</span>
-      <span>Taxi {city.name}, {city.countryName}</span>
-    </div>
     <h1>
       Taxi<br/>
       <span class="accent">{city.name}</span>
@@ -82,7 +79,12 @@ const faqItems = [
       )}
     </div>
     {isActive && <div class="nonstop-chip">Nonstop 24/7</div>}
-    {isActive && <div class="phone-display">{phoneDisplay}</div>}
+    {isActive && (
+      <a href={`tel:${phone}`} class="phone-plate">
+        <span class="plate-band" aria-hidden="true"></span>
+        <span class="plate-number">{phoneDisplay}</span>
+      </a>
+    )}
     {isActive && phoneSecondaryDisplay && (
       <div class="phone-secondary">
         <a href={`tel:${phoneSecondary}`}>{phoneSecondaryDisplay}</a>
@@ -135,22 +137,22 @@ const faqItems = [
       <h2>{i('features.title')}</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">&#x23F1;&#xFE0F;</div>
+          <div class="feature-icon"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/></svg></div>
           <h3>{i('features.fast.title')}</h3>
           <p>{i('features.fast.desc')}</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#x1F6E1;&#xFE0F;</div>
+          <div class="feature-icon"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5V11c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5.5z"/><path d="m9 11.5 2 2 4-4.5"/></svg></div>
           <h3>{i('features.safe.title')}</h3>
           <p>{i('features.safe.desc')}</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#x1F4B0;</div>
+          <div class="feature-icon"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
           <h3>{i('features.price.title')}</h3>
           <p>{i('features.price.desc')}</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">&#x1F319;</div>
+          <div class="feature-icon"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 13.5A9 9 0 1 1 10.5 3a7 7 0 0 0 10.5 10.5z"/></svg></div>
           <h3>{i('features.available.title')}</h3>
           <p>{i('features.available.desc')}</p>
         </div>
@@ -263,6 +265,10 @@ const faqItems = [
     <div class="footer-brand">
       <img src="/images/wordmark-light.png" alt="Foxi.taxi" class="footer-wordmark" width="132" height="90" loading="lazy" />
       <div class="footer-tagline">{i('footer.tagline')}</div>
+      <div class="footer-region">
+        <span>{city.flag}</span>
+        <span>{city.name}, {city.countryName}</span>
+      </div>
     </div>
     <div class="footer-inner">
       <div class="footer-left">
